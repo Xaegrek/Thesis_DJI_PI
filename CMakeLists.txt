@@ -21,6 +21,10 @@ FILE(GLOB SOURCE_FILES *.hpp *.cpp
         #${CMAKE_CURRENT_SOURCE_DIR}/common/dji_linux_helpers.cpp
         )
 
+if (${CMAKE_SYSTEM_NAME} MATCHES Linux)
+    add_subdirectory(samples)
+endif()
+
 ## target and linking
 #set(SOURCE_FILES common/main.cpp)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
