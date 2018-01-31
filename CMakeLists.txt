@@ -27,5 +27,5 @@ endif()
 
 ## target and linking
 #set(SOURCE_FILES common/main.cpp)
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} Contrl_Fusion/main.cpp Contrl_Fusion/CTRLFusion.cpp Contrl_Fusion/CTRLFusion.h)
 target_link_libraries(${PROJECT_NAME})
