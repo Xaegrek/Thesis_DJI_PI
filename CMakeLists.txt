@@ -4,7 +4,7 @@ project(Thesis_DJI_PI)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g -O0")
 
 ## osdk-core location
-set(ONBOARDSDK_SOURCE osdk-core)
+set(ONBOARDSDK_SOURCE SampleTest/osdk-core)
 
 
 ## osdk-core headers
@@ -15,17 +15,17 @@ include_directories(${ONBOARDSDK_SOURCE}/protocol/inc)
 include_directories(${ONBOARDSDK_SOURCE}/platform/linux/inc)
 
 ## Project code files
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common)
+include_directories(SampleTest/common)
 FILE(GLOB SOURCE_FILES *.hpp *.cpp
         #${CMAKE_CURRENT_SOURCE_DIR}/common/dji_linux_environment.cpp
         #${CMAKE_CURRENT_SOURCE_DIR}/common/dji_linux_helpers.cpp
         )
 
 if (${CMAKE_SYSTEM_NAME} MATCHES Linux)
-    add_subdirectory(samples)
+    add_subdirectory(SampleTest/samples)
 endif()
 
 ## target and linking
 #set(SOURCE_FILES common/main.cpp)
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} Contrl_Fusion/main.cpp Contrl_Fusion/CTRLFusion.cpp Contrl_Fusion/CTRLFusion.h)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} SampleTest/Contrl_Fusion/main.cpp SampleTest/Contrl_Fusion/CTRLFusion.cpp SampleTest/Contrl_Fusion/CTRLFusion.h)
 target_link_libraries(${PROJECT_NAME})
