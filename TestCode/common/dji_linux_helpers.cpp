@@ -29,6 +29,7 @@
 
 #include <dji_linux_helpers.hpp>
 #include <iostream>
+#include "dji_linux_helpers.hpp"
 
 using namespace DJI::OSDK;
 
@@ -94,6 +95,7 @@ LinuxSetup::setupEnvironment(int argc, char **argv) {
     }
 
     this->environment = new DJI_Environment(config_file_path);
+    std::cout<< config_file_path<<std::endl;
     if (!environment->getConfigResult()) {
         // We were unable to read the config file. Exit.
         throw std::runtime_error(
