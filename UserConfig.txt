@@ -2,4 +2,3 @@ app_id : 1051117
 app_key : 8de7ffac1a632b8b6e21df0026532e12e621b2ab4193c7dc65265a8f061655e5
 device : /dev/serial0
 baudrate : 230400
-taste
