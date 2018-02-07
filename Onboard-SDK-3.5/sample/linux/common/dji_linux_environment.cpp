@@ -46,14 +46,16 @@ std::string
 DJI_Environment::findFile(std::string file)
 {
   char        cwd[1024];
-  std::string configFile;
 
+  std::string configFile;
   if (getcwd(cwd, sizeof(cwd)) == NULL)
     throw std::runtime_error("Error getting current directory");
 
   std::string strCWD(cwd);
-  // configFile = strCWD + "/osdk-core/" + file;
+  //configFile = strCWD + "/osdk-core/" + file;
   configFile = strCWD + "/" + file; // just in the current working directory
+  configFile = strCWD + "/../TestCode/common" + file;
+  std::cout<<configFile<<std::endl;
 
   std::ifstream fStream(configFile.c_str());
 

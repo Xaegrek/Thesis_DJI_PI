@@ -424,6 +424,22 @@ public:
    *  @param z          z position set-point in z axis of ground frame (NED)
    * (m), input limit see DJI::OSDK::Control::VERTICAL_POSITION
    */
+
+  void attitudeAndVertThrCtrl(float32_t roll, float32_t pitch, float32_t yaw,
+                              float32_t thr);
+
+        /*! @brief Control the attitude rate and vertical thrust of the vehicle
+         *
+         *  @param rollRate   attitude rate set-point in x axis of body frame (FRU)
+         * (deg/s)
+         *  @param pitchRate  attitude rate set-point in y axis of body frame (FRU)
+         * (deg/s)
+         *  @param yawRate    attitude rate set-point in z axis of body frame (FRU)
+         * (deg/s), input limit see DJI::OSDK::Control::YAW_RATE
+         *  @param z          z thrust set-point in z axis of body frame (FRU)
+         * (m), input limit see DJI::OSDK::Control::VERTICAL_THRUST
+         */
+
   void angularRateAndVertPosCtrl(float32_t rollRate, float32_t pitchRate,
                                  float32_t yawRate, float32_t z);
 

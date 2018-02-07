@@ -395,12 +395,24 @@ Control::attitudeAndVertPosCtrl(float32_t roll, float32_t pitch, float32_t yaw,
 }
 
 void
+Control::attitudeAndVertThrCtrl(float32_t roll, float32_t pitch, float32_t yaw,
+                                float32_t thr)
+{
+  //! @note 18 is the flag value of this mode
+  uint8_t ctrl_flag =
+          (VERTICAL_THRUST | HORIZONTAL_ANGLE | YAW_ANGLE | HORIZONTAL_BODY);
+  CtrlData data(ctrl_flag, roll, pitch, thr, yaw);
+
+  return this->flightCtrl(data);
+}
+
+void
 Control::angularRateAndVertPosCtrl(float32_t rollRate, float32_t pitchRate,
                                    float32_t yawRate, float32_t z)
 {
   if (vehicle->getFwVersion() > extendedVersionBase)
   {
-    //! @note 218 is the flag value of this mode
+    //! @note is the flag value of this mode
     uint8_t ctrl_flag = (VERTICAL_POSITION | HORIZONTAL_ANGULAR_RATE |
                          YAW_RATE | HORIZONTAL_BODY);
     CtrlData data(ctrl_flag, rollRate, pitchRate, z, yawRate);
