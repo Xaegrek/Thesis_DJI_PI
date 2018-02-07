@@ -76,14 +76,11 @@ LinuxSetup::setupEnvironment(int argc, char **argv) {
             }
         }
     }
-    if(config_file_path.empty()){
-        config_file_path = argv[0];
-        config_file_path += "/../../bin";
-    }
+
     std::cout<< config_file_path <<std::endl;
 
     //config_file_path += "/../../common";
-    std::cout<< argv <<std::endl;
+    std::cout<< argv[0] <<std::endl;
 
     if (!config_file_path.empty()) {
         std::ifstream fStream(config_file_path.c_str());
