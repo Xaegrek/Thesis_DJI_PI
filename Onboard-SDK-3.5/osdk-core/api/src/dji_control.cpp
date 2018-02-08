@@ -395,8 +395,8 @@ Control::attitudeAndVertPosCtrl(float32_t roll, float32_t pitch, float32_t yaw,
 }
 
 void
-Control::attitudeAndVertThrCtrl(float32_t roll, float32_t pitch, float32_t yaw,
-                                float32_t thr)
+Control::attitudeAndVertThrCtrl(float32_t roll, float32_t pitch, float32_t thr,
+                                float32_t yaw)
 {
   //! @note 18 is the flag value of this mode
   uint8_t ctrl_flag =

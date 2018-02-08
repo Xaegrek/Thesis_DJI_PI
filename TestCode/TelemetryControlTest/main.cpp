@@ -44,6 +44,9 @@ main(int argc, char** argv)
     std::cout
             << "| [c] Monitored Takeoff + Attitude and Thrust Control + Landing  |"
             << std::endl;
+    std::cout
+            << "| [d] Takeoff + Attitude and Thrust  + Landing with custom values|"
+            << std::endl;
     char inputChar;
     std::cin >> inputChar;
 
@@ -63,6 +66,24 @@ main(int argc, char** argv)
         case 'c':
             monitoredTakeoff(vehicle);
             moveByAttitudeThrust(vehicle, 10, 1, 1, 20);
+            monitoredLanding(vehicle);
+            break;
+        case 'd':
+            std::cout<<"Roll Angle Degrees"<<std::endl;
+            float iRol;
+            std::cin >> iRol;
+            std::cout<<"Pitch Angle Degrees"<<std::endl;
+            float iPit;
+            std::cin >> iPit;
+            std::cout<<"Yaw Angle Degrees"<<std::endl;
+            float iYaw;
+            std::cin >> iYaw;
+            std::cout<<"Thrust Percentage, needs testing either 0-1, or 0-10000"<<std::endl;
+            float iThr;
+            std::cin >> iThr;
+
+            monitoredTakeoff(vehicle);
+            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw);
             monitoredLanding(vehicle);
             break;
         default:

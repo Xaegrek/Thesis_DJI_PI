@@ -661,7 +661,9 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
         broadcastQ = vehicle->broadcast->getQuaternion();
         yawInRad   = toEulerAngle((static_cast<void*>(&broadcastQ))).z / DEG2RAD;
     }
-
+    std::cout << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
+              << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
+              << broadcastQ.q3 << "\n";
     int   elapsedTimeInMs     = 0;
     int   withinBoundsCounter = 0;
     int   outOfBounds         = 0;
