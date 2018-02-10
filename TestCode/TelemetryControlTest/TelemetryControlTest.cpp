@@ -553,7 +553,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     // the
     // mission
     int responseTimeout              = 1;
-    int timeoutInMilSec              = 10000;
+    int timeoutInMilSec              = 5000;
     int controlFreqInHz              = 50; // Hz
     int cycleTimeInMs                = 1000 / controlFreqInHz;
     int outOfControlBoundsTimeLimit  = 10 * cycleTimeInMs; // 10 cycles
@@ -671,7 +671,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     int   speedFactor         = 2;
     float xCmd, yCmd, zCmd;
     // There is a deadband in position control
-    // the z cmd is 0.0-1.0 thrust percentage
+    // the z cmd is 0.0-100.0 thrust percentage
     // while x and y are in relative
     float zDeadband = 0.1;
 
