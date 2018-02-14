@@ -52,8 +52,8 @@ bool moveByPositionOffset(DJI::OSDK::Vehicle *vehicle, float xOffsetDesired,
 !*/
 bool moveByAttitudeThrust(DJI::OSDK::Vehicle *vehicle, float xRoll,
                           float yPitch, float zThrust,
-                          float yawDesired, float thrustThreshold = 1.0,
-                          float attThresholdInDeg = 0.75);
+                          float yawDesired, float attThresholdInDeg = 0.75,
+                          float thrustThreshold = 1.0);
 
 /*! Monitored Landing (Blocking API call). Return status as well as ack.
     This version of takeoff makes sure your aircraft actually took off
