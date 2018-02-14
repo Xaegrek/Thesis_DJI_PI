@@ -69,6 +69,7 @@ main(int argc, char** argv)
             monitoredLanding(vehicle);
             break;
         case 'd':
+            std::cout<<"May need to set attitdeThreshold"<<std::endl
             std::cout<<"Roll Angle Degrees"<<std::endl;
             float iRol;
             std::cin >> iRol;
