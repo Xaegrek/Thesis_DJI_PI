@@ -78,7 +78,7 @@ main(int argc, char** argv)
             std::cout<<"Yaw Angle Degrees"<<std::endl;
             float iYaw;
             std::cin >> iYaw;
-            std::cout<<"Thrust Percentage, needs testing either 0-100, hover ~35-38?"<<std::endl;
+            std::cout<<"Thrust Percentage, from 0 - 100: Hover near 25"<<std::endl;
             float iThr;
             std::cin >> iThr;
 
