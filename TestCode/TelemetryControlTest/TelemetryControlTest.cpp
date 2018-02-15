@@ -442,6 +442,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     xCmd = xRoll; //degrees
     yCmd = yPitch;
     zCmd = zThrust; //percent [0, 1]
+
     //! Set systm limits for []Cmd inputs
     float zLimit      = 33;
     float xLimit      = 7;
@@ -516,8 +517,8 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
 
             broadcastQ         = vehicle->broadcast->getQuaternion();
             yawInRad           = toEulerAngle((static_cast<void*>(&broadcastQ))).z;
-            pitchInRad = toEulerAngle((static_cast<void*>(&broadcastQ))).y;  // @todo check this is RADian
-            rollInRad  = toEulerAngle((static_cast<void*>(&broadcastQ))).x;
+            pitchInRad         = toEulerAngle((static_cast<void*>(&broadcastQ))).y;  // @todo check this is RADian
+            rollInRad          = toEulerAngle((static_cast<void*>(&broadcastQ))).x;
             currentBroadcastGP = vehicle->broadcast->getGlobalPosition();
             localOffsetFromGpsOffset(vehicle, localOffset,
                                      static_cast<void*>(&currentBroadcastGP),
