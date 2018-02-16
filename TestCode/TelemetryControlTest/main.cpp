@@ -33,19 +33,22 @@ main(int argc, char** argv)
 
     // Display interactive prompt
     std::cout
-            << "| Available commands:                                            |"
+            << "| Available commands:                                             |"
             << std::endl;
     std::cout
-            << "| [a] Monitored Takeoff + Landing                                |"
+            << "| [a] Monitored Takeoff + Landing                                 |"
             << std::endl;
     std::cout
-            << "| [b] Monitored Takeoff + Position Control + Landing             |"
+            << "| [b] Monitored Takeoff + Position Control + Landing              |"
             << std::endl;
     std::cout
-            << "| [c] Monitored Takeoff + Attitude and Thrust Control + Landing  |"
+            << "| [c] Monitored Takeoff + Attitude and Thrust Control + Landing   |"
             << std::endl;
     std::cout
-            << "| [d] Takeoff + Attitude and Thrust  + Landing with custom values|"
+            << "| [d] Takeoff + Attitude and Thrust  + Landing with custom values |"
+            << std::endl;
+    std::cout
+            << "| [e] Takeoff + Attitude and Thrust  + Landing with short timeouts|"
             << std::endl;
     char inputChar;
     std::cin >> inputChar;
@@ -65,7 +68,7 @@ main(int argc, char** argv)
             break;
         case 'c':
             monitoredTakeoff(vehicle);
-            moveByAttitudeThrust(vehicle, 10, 1, 1, 20);
+            moveByAttitudeThrust(vehicle, 1, 1, 90, 20, 3500);
             monitoredLanding(vehicle);
             break;
         case 'd':
@@ -84,7 +87,14 @@ main(int argc, char** argv)
             std::cin >> iThr;
 
             monitoredTakeoff(vehicle);
-            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw);
+            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw, 3500);
+            monitoredLanding(vehicle);
+            break;
+        case 'e':
+            monitoredTakeoff(vehicle);
+            moveByAttitudeThrust(vehicle, 5, 5, 90, 38, 1000);
+            moveByAttitudeThrust(vehicle, -5, -5, 180, 38, 1000);
+            moveByAttitudeThrust(vehicle, 0, 0, 0, 45, 500);
             monitoredLanding(vehicle);
             break;
         default:

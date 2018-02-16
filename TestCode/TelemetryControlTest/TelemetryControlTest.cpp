@@ -380,14 +380,14 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
 bool
 moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
                      float yPitch, float zThrust,
-                     float yawDesired, float attThresholdInDeg,
+                     float yawDesired, int timeoutInMilSec, float attThresholdInDeg,
                      float thrustThreshold)
 {
     // Set timeout: this timeout is the time you allow the drone to take to finish
     // the
     // mission
     int responseTimeout              = 1;
-    int timeoutInMilSec              = 3500;
+    //int timeoutInMilSec              = 3500;
     int controlFreqInHz              = 50; // Hz
     int cycleTimeInMs                = 1000 / controlFreqInHz;
     int outOfControlBoundsTimeLimit  = 10 * cycleTimeInMs; // 10 cycles
