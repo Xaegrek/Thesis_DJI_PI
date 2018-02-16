@@ -85,9 +85,12 @@ main(int argc, char** argv)
             std::cout<<"Thrust Percentage, from 0 - 100: Hover near 25"<<std::endl;
             float iThr;
             std::cin >> iThr;
+            std::cout<<"Timeout duration for action, default was 5000, changed to 3500 worked well"<<std::endl;
+            float iTim;
+            std::cin >> iTim;
 
             monitoredTakeoff(vehicle);
-            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw, 3500);
+            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw, iTim);
             monitoredLanding(vehicle);
             break;
         case 'e':
