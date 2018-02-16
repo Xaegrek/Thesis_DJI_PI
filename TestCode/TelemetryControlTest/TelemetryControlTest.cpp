@@ -613,10 +613,12 @@ monitoredLanding(Vehicle* vehicle, int timeout)
 
         bool pkgStatus = vehicle->subscribe->initPackageFromTopicList(
                 pkgIndex, numTopic, topicList10Hz, enableTimestamp, freq);
+
         if (!(pkgStatus))
         {
             return pkgStatus;
         }
+
         subscribeStatus = vehicle->subscribe->startPackage(pkgIndex, timeout);
         if (ACK::getError(subscribeStatus) != ACK::SUCCESS)
         {
@@ -701,6 +703,7 @@ monitoredLanding(Vehicle* vehicle, int timeout)
                     << "Landing finished, but the aircraft is in an unexpected mode. "
                             "Please connect DJI GO.\n";
             ACK::ErrorCode ack = vehicle->subscribe->removePackage(pkgIndex, timeout);
+
             if (ACK::getError(ack))
             {
                 std::cout << "Error unsubscribing; please restart the drone/FC to get "
@@ -768,6 +771,7 @@ monitoredLanding(Vehicle* vehicle, int timeout)
     if (!vehicle->isM100() && !vehicle->isLegacyM600())
     {
         ACK::ErrorCode ack = vehicle->subscribe->removePackage(pkgIndex, timeout);
+
         if (ACK::getError(ack))
         {
             std::cout
