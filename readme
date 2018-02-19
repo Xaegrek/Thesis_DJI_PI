@@ -1,0 +1,13 @@
+
+Building Testcode
+while in Thesis_DJI_PI
+"mkdir build"
+"cd bulid"
+"cmake .."
+"make"
+"cd bin"
+"./Thesis_DJI_PI" - this sets up api directory
+
+Wifi - Adhoc by defalut
+"crontab -e "
+"@reboot bash /usr/local/bin/adhoc_config.sh" using file from /bin/ in this repository
