@@ -68,9 +68,18 @@ main(int argc, char** argv)
             break;
         case 'c':
             monitoredTakeoff(vehicle);
+            moveByPositionOffset(vehicle, 0, 0, 5, 0);
             moveByAttitudeThrust(vehicle, 1, 1, 90, 20, 3500);
             monitoredLanding(vehicle);
             break;
+        case '#':
+        std::cin >> inputChar;
+            if (inputChar == 'c') {
+                monitoredTakeoff(vehicle);
+                moveByPositionOffset(vehicle, 0, 0, 5, 0);
+                moveByAttitudeThrust(vehicle, 1, 1, 90, 40, 3500); //change to lower value for real system
+                monitoredLanding(vehicle);
+            }
         case 'd':
             std::cout<<"May need to adjust attitude threshold "<<std::endl;
             std::cout<<"Roll Angle Degrees"<<std::endl;
