@@ -86,7 +86,7 @@ main(int argc, char** argv)
             float iThr;
             std::cin >> iThr;
             std::cout<<"Timeout duration for action, default was 5000, changed to 3500 worked well"<<std::endl;
-            float iTim;
+            int iTim;
             std::cin >> iTim;
 
             monitoredTakeoff(vehicle);
