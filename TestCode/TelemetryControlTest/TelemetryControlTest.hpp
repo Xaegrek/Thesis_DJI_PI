@@ -8,6 +8,10 @@
 
 // System Includes
 #include <cmath>
+#include <fstream>
+#include <sstream>
+#include <fstream>
+#include <stdio.h>
 
 // DJI OSDK includes
 #include "dji_status.hpp"
@@ -18,6 +22,7 @@
 
 #define C_EARTH (double)6378137.0
 #define DEG2RAD 0.01745329252
+extern std::ofstream outfile;
 
 //!@note: All the default timeout parameters are for acknowledgement packets
 //! from the aircraft.

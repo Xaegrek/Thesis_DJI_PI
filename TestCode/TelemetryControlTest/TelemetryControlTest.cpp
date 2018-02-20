@@ -1,10 +1,13 @@
 /*! xaegrek
  */
 
+#include <cstdio>
 #include "TelemetryControlTest.hpp"
 
 using namespace DJI::OSDK;
 using namespace DJI::OSDK::Telemetry;
+FILE * outputfile;
+std::ofstream outfile;
 
 /*! Monitored Takeoff (Blocking API call). Return status as well as ack.
     This version of takeoff makes sure your aircraft actually took off
@@ -15,6 +18,10 @@ using namespace DJI::OSDK::Telemetry;
 bool
 monitoredTakeoff(Vehicle* vehicle, int timeout)
 {
+    //! Setup logging file for quaternions, etc
+
+
+
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
     int  pkgIndex;
@@ -503,9 +510,14 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     //! Main closed-loop attitude thrust control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
-        std::cout << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
+        std::ostringstream osstemp; std::string quaternionWrite;
+        osstemp << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
                   << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
                   << broadcastQ.q3 << "\n";
+        quaternionWrite = osstemp.str();
+
+        outfile << osstemp.str();
+        //fprintf(outputfile, "%s", osstemp.str());
 
         vehicle->control->attitudeAndVertThrCtrl(xCmd, yCmd, zCmd,
                                              yawDesiredRad / DEG2RAD);

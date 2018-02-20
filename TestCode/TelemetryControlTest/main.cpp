@@ -14,8 +14,17 @@ using namespace DJI::OSDK::Telemetry;
 int
 main(int argc, char** argv)
 {
+    std::ofstream outfile;
+    //std::ofstream outfile ("QuaterionRecent.txt");
+    outfile.open("QuaterionRecent.txt");
+    outfile << "\n \n \n \n New Test";
+
+    //FILE * outputfile;
+    //outputfile = fopen("QuaterionRecent.txt","a+");
+    //fprintf(outputfile,"\n \n \n \n New Test");
+
     // Test Output
-    std::cout<< "Test Output" <<std::endl;
+    std::cout<< "Dialogue Test" <<std::endl;
     // Initialize variables
     int functionTimeout = 1;
 
@@ -80,6 +89,7 @@ main(int argc, char** argv)
                 moveByAttitudeThrust(vehicle, 1, 1, 90, 40, 3500); //change to lower value for real system
                 monitoredLanding(vehicle);
             }
+            break;
         case 'd':
             std::cout<<"May need to adjust attitude threshold "<<std::endl;
             std::cout<<"Roll Angle Degrees"<<std::endl;
@@ -113,5 +123,7 @@ main(int argc, char** argv)
             break;
     }
 
+    outfile.close();
+    //fclose(outputfile);
     return 0;
 }

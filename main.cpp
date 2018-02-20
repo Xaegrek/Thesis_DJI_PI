@@ -1,6 +1,8 @@
 // Xaegrek
 #include <iostream>
 #include <fstream>
+#include <sstream>
+
 int main() {
     std::cout << "Hello, World!" << std::endl;
     std::cout << "Test Files" << std::endl;
@@ -12,5 +14,17 @@ int main() {
             "device : /dev/serial0\n"
             "baudrate : 230400"<<std::endl;
     outfile.close();
+
+    std::ostringstream osstemp;std::string test; float x=0.01; int y=3;
+    osstemp << "Test string, followed by float and int: " << x << " " << y << std::endl;
+    test = osstemp.str();
+    std::cout << test;
+
+
+    osstemp << "Test string, followed by float and int: " << x << " " << y << std::endl;
+    test = osstemp.str();
+
+    std::ofstream outfile2 ("QuaterionRecent.txt");
+    outfile2.close();
     return 0;
 }
