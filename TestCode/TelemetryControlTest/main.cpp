@@ -86,7 +86,7 @@ main(int argc, char** argv)
             if (inputChar == 'c') {
                 monitoredTakeoff(vehicle);
                 moveByPositionOffset(vehicle, 0, 0, 5, 0);
-                moveByAttitudeThrust(vehicle, 1, 1, 90, 40, 3500); //change to lower value for real system
+                moveByAttitudeThrust(vehicle, 1, 1, 40, 90, 3500); //change to lower value for real system
                 monitoredLanding(vehicle);
             }
             break;
