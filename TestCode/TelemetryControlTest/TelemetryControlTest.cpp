@@ -448,9 +448,9 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     //! Sets controls to those from Function Input
     xCmd = xRoll; //degrees
     yCmd = yPitch;
-    zCmd = zThrust; //percent [0, 1]
+    zCmd = zThrust; //percent [0, 100]
 
-    //! Set systm limits for []Cmd inputs
+/*    //! Set systm limits for []Cmd inputs
     float zLimit      = 33;
     float xLimit      = 7;
     float yLimit      = 7;
@@ -478,7 +478,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
         {
             yCmd = yLimit;
         }
-    }
+    }*/
 
     // Conversions
     double yawDesiredRad     = DEG2RAD * yawDesired;
@@ -516,7 +516,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
                   << broadcastQ.q3 << "\n";
         quaternionWrite = osstemp.str();
         std::cout << quaternionWrite << std::endl;
-        outfile << quaternionWrite;
+        outfile << quaternionWrite << std::endl;
         //fprintf(outputfile, "%s", osstemp.str());
 
         vehicle->control->attitudeAndVertThrCtrl(xCmd, yCmd, zCmd,
