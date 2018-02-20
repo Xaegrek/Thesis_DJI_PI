@@ -109,11 +109,13 @@ main(int argc, char** argv)
             std::cin >> iTim;
 
             monitoredTakeoff(vehicle);
+            moveByPositionOffset(vehicle, 0, 0, 5, 0); //! hover to selttle sisystem
             moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw, iTim);
             monitoredLanding(vehicle);
             break;
         case 'e':
             monitoredTakeoff(vehicle);
+            moveByPositionOffset(vehicle, 0, 0, 5, 0); //! hover to settle system
             moveByAttitudeThrust(vehicle, 5, 5, 90, 38, 1000);
             moveByAttitudeThrust(vehicle, -5, -5, 180, 38, 1000);
             moveByAttitudeThrust(vehicle, 0, 0, 0, 45, 500);
