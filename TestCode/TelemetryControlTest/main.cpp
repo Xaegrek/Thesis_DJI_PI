@@ -78,7 +78,7 @@ main(int argc, char** argv)
         case 'c':
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0);
-            moveByAttitudeThrust(vehicle, 1, 1, 90, 20, 3500);
+            moveByAttitudeThrust(vehicle, 1, 1, 20, 90, 3500);
             monitoredLanding(vehicle);
             break;
         case '#':
@@ -116,9 +116,9 @@ main(int argc, char** argv)
         case 'e':
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0); //! hover to settle system
-            moveByAttitudeThrust(vehicle, 5, 5, 90, 38, 1000);
-            moveByAttitudeThrust(vehicle, -5, -5, 180, 38, 1000);
-            moveByAttitudeThrust(vehicle, 0, 0, 0, 45, 500);
+            moveByAttitudeThrust(vehicle, 5, 5, 38, 90, 1000);
+            moveByAttitudeThrust(vehicle, -5, -5, 38, 180, 1000);
+            moveByAttitudeThrust(vehicle, 0, 0, 45, 0, 500);
             monitoredLanding(vehicle);
             break;
         default:
