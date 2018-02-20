@@ -25,6 +25,8 @@ int main() {
     test = osstemp.str();
 
     std::ofstream outfile2 ("QuaterionRecent.txt");
+    outfile2 << "test" << std::endl;
+    outfile2 << "retest" << std::endl;
     outfile2.close();
     return 0;
 }

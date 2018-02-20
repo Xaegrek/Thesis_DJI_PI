@@ -122,7 +122,7 @@ main(int argc, char** argv)
         default:
             break;
     }
-
+    std::cout << "End" << std::endl;
     outfile.close();
     //fclose(outputfile);
     return 0;

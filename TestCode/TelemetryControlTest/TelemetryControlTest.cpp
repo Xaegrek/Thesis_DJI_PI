@@ -515,8 +515,8 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
                   << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
                   << broadcastQ.q3 << "\n";
         quaternionWrite = osstemp.str();
-
-        outfile << osstemp.str();
+        std::cout << quaternionWrite << std::endl;
+        outfile << quaternionWrite;
         //fprintf(outputfile, "%s", osstemp.str());
 
         vehicle->control->attitudeAndVertThrCtrl(xCmd, yCmd, zCmd,
