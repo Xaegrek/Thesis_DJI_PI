@@ -24,9 +24,10 @@ int main() {
     osstemp << "Test string, followed by float and int: " << x << " " << y << std::endl;
     test = osstemp.str();
 
-    std::ofstream outfile2 ("QuaterionRecent.txt");
+    std::ofstream outfile2 ("QuaterionRecent.txt", std::ofstream::app);
     outfile2 << "test" << std::endl;
     outfile2 << "retest" << std::endl;
+    outfile2 << x << std::endl;
     outfile2.close();
     return 0;
 }

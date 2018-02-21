@@ -16,8 +16,8 @@ main(int argc, char** argv)
 {
     std::ofstream outfile;
     //std::ofstream outfile ("QuaterionRecent.txt");
-    outfile.open("QuaterionRecent.txt");
-    outfile << "\n \n \n \n New Test";
+    outfile.open ("QuaterionRecent.txt", std::ofstream::app);
+    outfile << "\n \n New Test";
 
     //FILE * outputfile;
     //outputfile = fopen("QuaterionRecent.txt","a+");
