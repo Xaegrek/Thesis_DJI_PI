@@ -401,6 +401,9 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     int withinControlBoundsTimeReqmt = 50 * cycleTimeInMs; // 50 cycles
     int pkgIndex;
 
+    std::ofstream outfile;
+    outfile.open ("QuaterionRecent.txt", std::ofstream::app);
+
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
 
@@ -506,18 +509,18 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     int   outOfBounds         = 0;
     int   brakeCounter        = 0;
     int   speedFactor         = 2;
-    std::ofstream outfile;
-    
+    //std::ofstream outfile;
+
     //! Main closed-loop attitude thrust control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
-/*        ostringstream not to file, testing this method
+        //!ostringstream not to file, testing this method
         std::ostringstream osstemp; std::string quaternionWrite;
         osstemp << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
                   << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
                   << broadcastQ.q3 << "\n";
         quaternionWrite = osstemp.str();
-        std::cout << quaternionWrite << std::endl;*/
+        std::cout << quaternionWrite << std::endl;
         outfile << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
                    << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
                    << broadcastQ.q3 << "\n" << std::endl;
@@ -594,7 +597,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     }
 
     //! Error for lost data connection hear, likely not supported in M100
-
+    outfile.close();
     return ACK::SUCCESS;
 }
 

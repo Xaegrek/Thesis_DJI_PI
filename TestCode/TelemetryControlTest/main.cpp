@@ -18,6 +18,7 @@ main(int argc, char** argv)
     //std::ofstream outfile ("QuaterionRecent.txt");
     outfile.open ("QuaterionRecent.txt", std::ofstream::app);
     outfile << "\n \n New Test";
+    outfile.close();
 
     //FILE * outputfile;
     //outputfile = fopen("QuaterionRecent.txt","a+");
@@ -125,7 +126,7 @@ main(int argc, char** argv)
             break;
     }
     std::cout << "End" << std::endl;
-    outfile.close();
+//    outfile.close();
     //fclose(outputfile);
     return 0;
 }
