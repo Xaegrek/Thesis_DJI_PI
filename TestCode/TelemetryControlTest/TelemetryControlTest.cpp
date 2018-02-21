@@ -7,7 +7,7 @@
 using namespace DJI::OSDK;
 using namespace DJI::OSDK::Telemetry;
 FILE * outputfile;
-std::ofstream outfile;
+
 
 /*! Monitored Takeoff (Blocking API call). Return status as well as ack.
     This version of takeoff makes sure your aircraft actually took off
@@ -506,7 +506,8 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     int   outOfBounds         = 0;
     int   brakeCounter        = 0;
     int   speedFactor         = 2;
-
+    std::ofstream outfile;
+    
     //! Main closed-loop attitude thrust control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
@@ -557,6 +558,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
         {
             //! 1. We are within bounds; start incrementing our in-bound counter
             withinBoundsCounter += cycleTimeInMs;
+            std::cout << "1. We are within bounds; start incrementing our in-bound counter "<<std::endl;
         }
         else
         {
@@ -564,6 +566,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
             {
                 //! 2. Start incrementing an out-of-bounds counter
                 outOfBounds += cycleTimeInMs;
+                std::cout << "2. Start incrementing an out-of-bounds counter" <<std::endl;
             }
         }
         //! 3. Reset withinBoundsCounter if necessary
@@ -571,10 +574,12 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
         {
             withinBoundsCounter = 0;
             outOfBounds         = 0;
+            std::cout<< " 3. Reset withinBoundsCounter if necessary" <<std::endl;
         }
         //! 4. If within bounds, set flag and break
         if (withinBoundsCounter >= withinControlBoundsTimeReqmt)
         {
+            std::cout << "4. If within bounds, set flag and break" <<std::endl;
             break;
         }
     }
