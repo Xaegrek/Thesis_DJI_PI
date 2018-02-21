@@ -510,13 +510,16 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     //! Main closed-loop attitude thrust control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
+/*        ostringstream not to file, testing this method
         std::ostringstream osstemp; std::string quaternionWrite;
         osstemp << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
                   << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
                   << broadcastQ.q3 << "\n";
         quaternionWrite = osstemp.str();
-        std::cout << quaternionWrite << std::endl;
-        outfile << quaternionWrite << std::endl;
+        std::cout << quaternionWrite << std::endl;*/
+        outfile << "Attitude Quaternion   (w,x,y,z)       = " << broadcastQ.q0
+                   << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
+                   << broadcastQ.q3 << "\n" << std::endl;
         //fprintf(outputfile, "%s", osstemp.str());
 
         vehicle->control->attitudeAndVertThrCtrl(xCmd, yCmd, zCmd,
