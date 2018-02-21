@@ -20,3 +20,184 @@ End
 pi@ra
 
 %% trial 2
+
+STATUS/1 @ activate, L1096: Activation successful
+| Available commands:                                             |
+| [a] Monitored Takeoff + Landing                                 |
+| [b] Monitored Takeoff + Position Control + Landing              |
+| [c] Monitored Takeoff + Attitude and Thrust Control + Landing   |
+| [d] Takeoff + Attitude and Thrust  + Landing with custom values |
+| [e] Takeoff + Attitude and Thrust  + Landing with short timeouts|
+d
+May need to adjust attitude threshold
+Roll Angle Degrees
+0
+Pitch Angle Degrees
+0
+Yaw Angle Degrees
+0
+Thrust Percentage, from 0 - 100: Hover near 25
+45
+Timeout duration for action, default was 5000, changed to 3500 worked well
+10000
+Successful TakeOff!
+Aircraft in air!
+Aircraft hovering at 0.1m!
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+Attitude Quaternion   (w,x,y,z)       = 1, 0, 0, 0
+
+1. We are within bounds; start incrementing our in-bound counter
+4. If within bounds, set flag and break
+
+STATUS/1 @ getErrorCodeMessage, L644:
+STATUS/1 @ getCMDIDTaskMSG, L823: CONTROLLER_FAIL
+End
+
+%% trail 3
+

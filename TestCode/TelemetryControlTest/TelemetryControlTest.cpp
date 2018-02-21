@@ -387,14 +387,20 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
 bool
 moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
                      float yPitch, float zThrust,
-                     float yawDesired, int timeoutInMilSec, float attThresholdInDeg,
+                     float yawDesired, float attThresholdInDeg,
                      float thrustThreshold)
 {
     // Set timeout: this timeout is the time you allow the drone to take to finish
     // the
     // mission
     int responseTimeout              = 1;
-    //int timeoutInMilSec              = 3500;
+    int timeoutInMilSec              = 3500;
+    // Telemetry Tracking Deleted - desined for non-M100
+
+    // Wait for data to come in
+    sleep(1);
+
+    // Get data
     int controlFreqInHz              = 50; // Hz
     int cycleTimeInMs                = 1000 / controlFreqInHz;
     int outOfControlBoundsTimeLimit  = 10 * cycleTimeInMs; // 10 cycles
@@ -403,16 +409,11 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
 
     std::ofstream outfile;
     outfile.open ("QuaterionRecent.txt", std::ofstream::app);
+    outfile << "\n new control for (roll, pitch,roll,thrust)" << xRoll << yPitch << yawDesired << zThrust << std::endl;
 
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
 
-    // Telemetry Tracking Deleted - desined for non-M100
-
-    // Wait for data to come in
-    sleep(1);
-
-    // Get data
 
     // Global position retrieved via subscription
     Telemetry::TypeMap<TOPIC_GPS_FUSED>::type currentSubscriptionGPS;
@@ -597,6 +598,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     }
 
     //! Error for lost data connection hear, likely not supported in M100
+    outfile << "elapsed time was " << elapsedTimeInMs << std::endl;
     outfile.close();
     return ACK::SUCCESS;
 }

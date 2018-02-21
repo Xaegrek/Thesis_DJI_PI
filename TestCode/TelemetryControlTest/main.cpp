@@ -17,7 +17,7 @@ main(int argc, char** argv)
     std::ofstream outfile;
     //std::ofstream outfile ("QuaterionRecent.txt");
     outfile.open ("QuaterionRecent.txt", std::ofstream::app);
-    outfile << "\n \n New Test";
+    outfile << "\n \n New Test" <<std::endl;
     outfile.close();
 
     //FILE * outputfile;
@@ -79,7 +79,7 @@ main(int argc, char** argv)
         case 'c':
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0);
-            moveByAttitudeThrust(vehicle, 1, 1, 20, 90, 3500);
+            moveByAttitudeThrust(vehicle, 1, 1, 20, 90);
             monitoredLanding(vehicle);
             break;
         case '#':
@@ -87,7 +87,7 @@ main(int argc, char** argv)
             if (inputChar == 'c') {
                 monitoredTakeoff(vehicle);
                 moveByPositionOffset(vehicle, 0, 0, 5, 0);
-                moveByAttitudeThrust(vehicle, 1, 1, 40, 90, 3500); //change to lower value for real system
+                moveByAttitudeThrust(vehicle, 1, 1, 40, 90); //change to lower value for real system
                 monitoredLanding(vehicle);
             }
             break;
@@ -105,21 +105,18 @@ main(int argc, char** argv)
             std::cout<<"Thrust Percentage, from 0 - 100: Hover near 25"<<std::endl;
             float iThr;
             std::cin >> iThr;
-            std::cout<<"Timeout duration for action, default was 5000, changed to 3500 worked well"<<std::endl;
-            int iTim;
-            std::cin >> iTim;
 
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0); //! hover to selttle sisystem
-            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw, iTim);
+            moveByAttitudeThrust(vehicle, iRol, iPit, iThr, iYaw);
             monitoredLanding(vehicle);
             break;
         case 'e':
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0); //! hover to settle system
-            moveByAttitudeThrust(vehicle, 5, 5, 38, 90, 1000);
-            moveByAttitudeThrust(vehicle, -5, -5, 38, 180, 1000);
-            moveByAttitudeThrust(vehicle, 0, 0, 45, 0, 500);
+            moveByAttitudeThrust(vehicle, 5, 5, 38, 90);
+            moveByAttitudeThrust(vehicle, -5, -5, 38, 180);
+            moveByAttitudeThrust(vehicle, 0, 0, 45, 0);
             monitoredLanding(vehicle);
             break;
         default:
