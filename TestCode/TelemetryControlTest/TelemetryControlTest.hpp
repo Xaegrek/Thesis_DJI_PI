@@ -8,13 +8,15 @@
 
 // System Includes
 #include <cmath>
+#include <math.h>
 #include <fstream>
 #include <sstream>
 #include <fstream>
 #include <stdio.h>
+#include <chrono>
 
 // DJI OSDK includes
-#include "dji_status.hpp"
+#include <dji_status.hpp>
 #include <dji_vehicle.hpp>
 
 // Helpers
@@ -22,10 +24,20 @@
 
 #define C_EARTH (double)6378137.0
 #define DEG2RAD 0.01745329252
-extern std::ofstream outfile;
 
 //!@note: All the default timeout parameters are for acknowledgement packets
 //! from the aircraft.
+
+
+/*! Trajectory Controller Test Crude
+    This forwards function to another file, cause "undefined refererce to fcn(DJI::OSDK::Vehicle*, int)" issues
+    This implementation of a trajectory controller takes in polynomial values from a
+    trajectory planner, and implements them into a system to run using the telemetry test thrust controller.
+    May want to migrate this control to use the api thrust, and do checking internally / with
+    another function.
+!*/
+bool trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], int timeout = 1);
+
 
 /*! Monitored Takeoff
     This implementation of takeoff  with monitoring makes sure your aircraft

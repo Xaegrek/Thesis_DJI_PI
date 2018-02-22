@@ -6,8 +6,63 @@
 
 using namespace DJI::OSDK;
 using namespace DJI::OSDK::Telemetry;
-FILE * outputfile;
+typedef std::chrono::high_resolution_clock Clock;
 
+// Controller Functions
+
+/*! Controller functnio(s) used to run below functions in a controlled manor.
+!*/
+
+bool
+trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], int timeout)
+{
+    int nDim = sizeof(aMan)/ sizeof(aMan[0]);
+    bool trajRun = true;
+    /*! Takeoff and time set
+     *
+     !*/
+    monitoredTakeoff(vehicle);
+    moveByPositionOffset(vehicle, 0, 0, 5, 0);
+    auto startPos = vehicle->subscribe->getValue<TOPIC_GPS_FUSED>();
+    auto curPos = startPos;
+
+    auto tTrajOrig   = Clock::now();                                // Initialization Time
+
+    while (trajRun)
+    {
+        auto tTraj       = Clock::now();                            // Current run time
+        std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+        auto tTrajN = tTrajTemp.count();
+        double xTr; double yTr; double zTr;
+        for (int nn = 0; nn <= nDim; nn = nn +1)
+        {
+            xTr = xTr + aMan[nn] * pow(tTrajN,nn);
+            yTr = yTr + bMan[nn] * pow(tTrajN,nn);
+            zTr = zTr + cMan[nn] * pow(tTrajN,nn);
+        }
+        double xdTr; double ydTr; double zdTr;
+        for (int nn = 1; nn <= nDim; nn = nn +1)
+        {
+            xdTr = xdTr + aMan[nn] * pow(tTrajN,nn-1);
+            ydTr = ydTr + bMan[nn] * pow(tTrajN,nn-1);
+            zdTr = zdTr + cMan[nn] * pow(tTrajN,nn-1);
+        }
+        double xddTr; double yddTr; double zddTr;
+        for (int nn = 2; nn <= nDim; nn = nn +1)
+        {
+            xddTr = xddTr + aMan[nn] * pow(tTrajN,nn-2);
+            yddTr = yddTr + bMan[nn] * pow(tTrajN,nn-2);
+            zddTr = zddTr + cMan[nn] * pow(tTrajN,nn-2);
+        }
+    }
+    return true;
+}
+
+
+// Control Functions
+
+/*! Control functnios used to control DJI by the controller above.
+!*/
 
 /*! Monitored Takeoff (Blocking API call). Return status as well as ack.
     This version of takeoff makes sure your aircraft actually took off
@@ -19,8 +74,6 @@ bool
 monitoredTakeoff(Vehicle* vehicle, int timeout)
 {
     //! Setup logging file for quaternions, etc
-
-
 
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
@@ -807,6 +860,7 @@ monitoredLanding(Vehicle* vehicle, int timeout)
 
     return true;
 }
+
 
 // Helper Functions
 
