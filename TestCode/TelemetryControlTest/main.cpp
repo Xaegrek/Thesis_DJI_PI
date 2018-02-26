@@ -61,10 +61,13 @@ main(int argc, char** argv)
             << "| [e] Takeoff + Attitude and Thrust  + Landing with short timeouts|"
             << std::endl;
     std::cout
-            << "| [f] Takeoff + polynomial follow                                 |"
+            << "| [f] Takeoff + polynomial follow + landing                       |"
             << std::endl;
     std::cout
-            << "| [g] Takeoff + waypoint following                                |"
+            << "| [g] Takeoff + waypoint-style offset pathing + landing           |"
+            << std::endl;
+    std::cout
+            << "| [h] Takeoff + waypoint following + landing                      |"
             << std::endl;
     char inputChar;
     std::cin >> inputChar;
@@ -144,6 +147,15 @@ main(int argc, char** argv)
             monitoredLanding(vehicle);
             break;
         case 'g':
+            for (int nn=0;nn<waypoints.size();nn=nn+1)
+            {
+                float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
+                float yawSpe = waypoints[nn][3];
+                std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
+            }
+            trajectoryWaypointOffsetControllerTest(vehicle,waypoints);
+            break;
+        case 'h':
             for (int nn=0;nn<waypoints.size();nn=nn+1)
             {
                 float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
