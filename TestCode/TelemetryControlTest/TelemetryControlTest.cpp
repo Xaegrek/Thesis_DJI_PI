@@ -16,7 +16,7 @@ bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<s
 {
     monitoredTakeoff(vehicle);
     std::cout<<"sleeping for 2 seconds"<<std::endl;
-    usleep(2);
+    usleep(2000);
     unsigned long nDim = way.size();
     for (int nn=0;nn<nDim;nn=nn+1)
     {
@@ -31,7 +31,7 @@ bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<s
         std::cout << "xc= "<<xOff<< " ;yc= "<<yOff<< " ;zc= "<<zOff<<" ;yaw = "<< yawSpec << std::endl;
 
         moveByPositionOffset(vehicle,xOff,yOff,zOff,yawSpec);
-        usleep(2);
+        usleep(2000);
     }
 
     monitoredLanding(vehicle);
