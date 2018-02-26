@@ -19,10 +19,11 @@ bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<s
 
 
     unsigned long nDim = way.size();
-    for (int nn=0;nn<=nDim;nn=nn+1)
+    for (int nn=0;nn<nDim;nn=nn+1)
     {
         float xOff = way[nn][0]; float yOff = way[nn][1]; float zOff = way[nn][2];
         float yawSpec = way[nn][3];
+        std::cout << "x= "<<xOff<< " ;y= "<<yOff<< " ;z= "<<zOff<<" ;yaw = "<< yawSpec << std::endl;
         moveByPositionOffset(vehicle,xOff,yOff,zOff,yawSpec);
     }
 
