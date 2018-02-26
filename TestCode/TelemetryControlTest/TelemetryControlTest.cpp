@@ -13,11 +13,37 @@ typedef std::chrono::high_resolution_clock Clock;
 /*! Controller functnio(s) used to run below functions in a controlled manor.
 !*/
 
+bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout)
+{
+    monitoredTakeoff(vehicle);
+
+
+    int nDim = way.size();
+    for (int nn=0;nn<=nDim;nn=nn+1)
+    {
+        float xOff = way[nn][0]; float yOff = way[nn][1]; float zOff = way[nn][2];
+        float yawSpec = way[nn][3];
+        moveByPositionOffset(vehicle,xOff,yOff,zOff,yawSpec);
+    }
+
+
+    monitoredLanding(vehicle);
+    return true;
+}
+
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], int timeout)
 {
     int nDim = sizeof(aMan)/ sizeof(aMan[0]);
     bool trajRun = true;
+
+    struct quadUAV{
+        double mass     =  2.462; // kg
+        double gravity  = 9.81; // m/s/s
+        double weight   = mass*gravity; //newtons
+        double density  = 1.225; // 
+    };
+    quadUAV UAV;
     /*! Takeoff and time set
      *
      !*/
@@ -36,24 +62,36 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         double xTr; double yTr; double zTr;
         for (int nn = 0; nn <= nDim; nn = nn +1)
         {
-            xTr = xTr + aMan[nn] * pow(tTrajN,nn);
-            yTr = yTr + bMan[nn] * pow(tTrajN,nn);
-            zTr = zTr + cMan[nn] * pow(tTrajN,nn);
+            xTr         = xTr + aMan[nn] * pow(tTrajN,nn);
+            yTr         = yTr + bMan[nn] * pow(tTrajN,nn);
+            zTr         = zTr + cMan[nn] * pow(tTrajN,nn);
         }
         double xdTr; double ydTr; double zdTr;
         for (int nn = 1; nn <= nDim; nn = nn +1)
         {
-            xdTr = xdTr + aMan[nn] * pow(tTrajN,nn-1);
-            ydTr = ydTr + bMan[nn] * pow(tTrajN,nn-1);
-            zdTr = zdTr + cMan[nn] * pow(tTrajN,nn-1);
+            xdTr        = xdTr + nn * aMan[nn] * pow(tTrajN,nn-1);
+            ydTr        = ydTr + nn * bMan[nn] * pow(tTrajN,nn-1);
+            zdTr        = zdTr + nn * cMan[nn] * pow(tTrajN,nn-1);
         }
         double xddTr; double yddTr; double zddTr;
         for (int nn = 2; nn <= nDim; nn = nn +1)
         {
-            xddTr = xddTr + aMan[nn] * pow(tTrajN,nn-2);
-            yddTr = yddTr + bMan[nn] * pow(tTrajN,nn-2);
-            zddTr = zddTr + cMan[nn] * pow(tTrajN,nn-2);
+            xddTr       = xddTr + nn * (nn-1) * aMan[nn] * pow(tTrajN,nn-2);
+            yddTr       = yddTr + nn * (nn-1) * bMan[nn] * pow(tTrajN,nn-2);
+            zddTr       = zddTr + nn * (nn-1) * cMan[nn] * pow(tTrajN,nn-2);
         }
+        double psiTr    = atan2(ydTr,xdTr);
+        double psidTr   = (yddTr * xdTr - ydTr * xddTr) * pow(cos(psiTr),2) / pow(xdTr,2);
+
+        double gamTr    = atan2(-zdTr,sqrt(pow(xdTr,2) + pow(ydTr,2)));
+        double gamdTr   = (zdTr * (xdTr*xddTr + ydTr*yddTr) - zddTr * (pow(xdTr,2) + pow(ydTr,2))) * pow(cos(psiTr),2) /
+                sqrt(pow(xdTr,3) + pow(ydTr,3));
+
+        double VaTr     = sqrt(pow(xdTr,2) + pow(ydTr,2) + pow(zdTr,2));
+        double VadTr    = (xdTr*xddTr + ydTr*yddTr + zdTr*zddTr) / sqrt(pow(xdTr,2) + pow(ydTr,2) + pow(zdTr,2));
+
+        double phi = atan2(cos(gamTr)*psidTr , (gamdTr + cos(gamTr)*UAV.gravity/VaTr));
+
     }
     return true;
 }

@@ -14,6 +14,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <chrono>
+#include <vector>
 
 // DJI OSDK includes
 #include <dji_status.hpp>
@@ -28,6 +29,11 @@
 //!@note: All the default timeout parameters are for acknowledgement packets
 //! from the aircraft.
 
+/*! Waypoint Controller Test
+    This takes in an array of waypoints, and controlls position-based control between each waypoint.
+    waypoints are in [x,y,z,yaw] format.
+!*/
+bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
 
 /*! Trajectory Controller Test Crude
     This forwards function to another file, cause "undefined refererce to fcn(DJI::OSDK::Vehicle*, int)" issues

@@ -4,7 +4,6 @@
 
 // System Includes
 #include "TelemetryControlTest.hpp"
-//#include "controllerTest.hpp"
 
 using namespace DJI::OSDK;
 using namespace DJI::OSDK::Telemetry;
@@ -67,9 +66,20 @@ main(int argc, char** argv)
     char inputChar;
     std::cin >> inputChar;
 
+    //! Test polynomial values - DO NOT RUN WITH THESE< CAUSE NOT GOOD - FIXED WING
     double aMan[] = {0, 3.9691e1, 4.7873e-1, -2.8244e-5, -2.2783e-4, -1.2762e-3, 8.7194e-5};
     double bMan[] = {9.1440, 1.0635e1, -2.7946, 2.0438e-1, -2.5241e-2, 4.3437e-3, -2.2276e-4};
     double cMan[] = {-1.6764e1, 2.1535, 2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, 3.1117e-5};
+
+    //! Test Waypoint flight points - expandable for nx4
+    std::vector<std::vector<float>> waypoints;
+    waypoints.push_back({0,0,5,0});
+    waypoints.push_back({0,0,7,0});
+    waypoints.push_back({0,5,7,0});
+    waypoints.push_back({-5,5,7,0});
+    waypoints.push_back({-5,0,7,0});
+    waypoints.push_back({0,0,5,0});
+
     switch (inputChar)
     {
         case 'a':
@@ -127,8 +137,11 @@ main(int argc, char** argv)
             monitoredLanding(vehicle);
             break;
         case 'f':
-            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan);
+            //trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan);
             monitoredLanding(vehicle);
+            break;
+        case 'g':
+            trajectoryWaypointControllerTest(vehicle,waypoints);
             break;
         default:
             break;
