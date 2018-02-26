@@ -150,7 +150,6 @@ main(int argc, char** argv)
                 float yawSpe = waypoints[nn][3];
                 std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
             }
-            std::cout<<"onto trajectory"<<std::endl;
             trajectoryWaypointControllerTest(vehicle,waypoints);
             break;
         default:
