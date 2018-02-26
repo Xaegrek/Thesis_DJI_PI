@@ -49,7 +49,7 @@ int main() {
     for (int nn=0;nn<nDim;nn=nn+1)
     {
 
-        std::cout << waypoints[nn][0]<< " n is " << nn << std::endl;
+        std::cout << waypoints[nn][0]<< " n is " << nn << 2e6<<std::endl;
     }
     //waypoints[0] = {6,3,3,2};
     //waypoints[1] = {1.2,3.4,2.2,14.3};
