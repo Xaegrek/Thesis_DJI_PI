@@ -18,7 +18,7 @@ bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<s
     monitoredTakeoff(vehicle);
 
 
-    int nDim = way.size();
+    unsigned long nDim = way.size();
     for (int nn=0;nn<=nDim;nn=nn+1)
     {
         float xOff = way[nn][0]; float yOff = way[nn][1]; float zOff = way[nn][2];

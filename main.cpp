@@ -44,7 +44,7 @@ int main() {
     waypoints.push_back({-5,5,7,0});
     waypoints.push_back({-5,0,7,0});
     waypoints.push_back({0,0,5,0});
-    int nDim = waypoints.size();
+    unsigned long nDim = waypoints.size();
 
     for (int nn=0;nn<nDim;nn=nn+1)
     {
