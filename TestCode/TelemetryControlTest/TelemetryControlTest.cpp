@@ -15,7 +15,8 @@ typedef std::chrono::high_resolution_clock Clock;
 bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout)
 {
     monitoredTakeoff(vehicle);
-
+    std::cout<<"sleeping for 2 seconds"<<std::endl;
+    usleep(2);
     unsigned long nDim = way.size();
     for (int nn=0;nn<nDim;nn=nn+1)
     {
