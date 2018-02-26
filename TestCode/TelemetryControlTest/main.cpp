@@ -79,11 +79,11 @@ main(int argc, char** argv)
 
     //! Test Waypoint flight points - expandable for nx4
     std::vector<std::vector<float>> waypoints;
-    waypoints.push_back({0,0,5,0});
-    waypoints.push_back({0,0,7,0});
+    waypoints.push_back({0,0,4,0});
+    waypoints.push_back({0,0,8,0});
     waypoints.push_back({0,5,7,0});
+    waypoints.push_back({-5,10,7,0});
     waypoints.push_back({-5,5,7,0});
-    waypoints.push_back({-5,0,7,0});
     waypoints.push_back({0,0,5,0});
 
     switch (inputChar)

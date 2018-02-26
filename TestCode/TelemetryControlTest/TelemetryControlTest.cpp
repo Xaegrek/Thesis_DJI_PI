@@ -28,9 +28,9 @@ bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<s
             xOff = xOff - way[nn-1][0]; yOff = yOff - way[nn-1][1]; zOff = zOff - way[nn-1][2];
         }
         std::cout << "xc= "<<xOff<< " ;yc= "<<yOff<< " ;zc= "<<zOff<<" ;yaw = "<< yawSpec << std::endl;
-        
-        moveByPositionOffset(vehicle,xOff,yOff,zOff,yawSpec);
 
+        moveByPositionOffset(vehicle,xOff,yOff,zOff,yawSpec);
+        usleep(2);
     }
 
     monitoredLanding(vehicle);
