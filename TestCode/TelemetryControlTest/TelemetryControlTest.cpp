@@ -41,6 +41,7 @@ bool trajectoryWaypointControllerTestTimer(DJI::OSDK::Vehicle *vehicle, std::vec
 bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout)
 {
     monitoredTakeoff(vehicle);
+    usleep(2e6);
 
     unsigned long nDim = way.size();
     for (int nn=0;nn<nDim;nn=nn+1)
