@@ -34,6 +34,7 @@
     waypoints are in [x,y,z,yaw] format.
 !*/
 bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
+bool trajectoryWaypointControllerTestTimer(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
 
 /*! Waypoint Controller Test
     This takes in an array of waypoints, and controlls position-based on offset from current body position.

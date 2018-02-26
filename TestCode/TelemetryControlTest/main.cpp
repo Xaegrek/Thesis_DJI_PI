@@ -162,6 +162,15 @@ main(int argc, char** argv)
                 float yawSpe = waypoints[nn][3];
                 std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
             }
+            trajectoryWaypointControllerTestTimer(vehicle,waypoints);
+            break;
+        case 'H':
+            for (int nn=0;nn<waypoints.size();nn=nn+1)
+            {
+                float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
+                float yawSpe = waypoints[nn][3];
+                std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
+            }
             trajectoryWaypointControllerTest(vehicle,waypoints);
             break;
         default:
