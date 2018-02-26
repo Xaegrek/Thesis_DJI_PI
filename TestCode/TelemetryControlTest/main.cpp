@@ -144,13 +144,13 @@ main(int argc, char** argv)
             monitoredLanding(vehicle);
             break;
         case 'g':
-            for (int nn=0;nn<=waypoints.size();nn=nn+1)
+            for (int nn=0;nn<waypoints.size();nn=nn+1)
             {
                 float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
                 float yawSpe = waypoints[nn][3];
                 std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
             }
-        std::cout<<"onto trajectory"<<std::endl;
+            std::cout<<"onto trajectory"<<std::endl;
             trajectoryWaypointControllerTest(vehicle,waypoints);
             break;
         default:
