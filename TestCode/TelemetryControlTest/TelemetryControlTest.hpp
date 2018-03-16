@@ -33,14 +33,18 @@
     This takes in an array of waypoints, and controlls position-based control between each waypoint.
     waypoints are in [x,y,z,yaw] format.
 !*/
-bool trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
-bool trajectoryWaypointControllerTestTimer(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
+bool
+trajectoryWaypointControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
+
+bool trajectoryWaypointControllerTestTimer(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way,
+                                           int timeout = 1);
 
 /*! Waypoint Controller Test
     This takes in an array of waypoints, and controlls position-based on offset from current body position.
     waypoints are in [x,y,z,yaw] format.
 !*/
-bool trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way, int timeout = 1);
+bool trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<std::vector<float>> way,
+                                            int timeout = 1);
 
 /*! Trajectory Controller Test Crude
     This forwards function to another file, cause "undefined refererce to fcn(DJI::OSDK::Vehicle*, int)" issues
@@ -49,7 +53,8 @@ bool trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::ve
     May want to migrate this control to use the api thrust, and do checking internally / with
     another function.
 !*/
-bool trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], int timeout = 1);
+bool trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[],
+                                   int timeout = 1);
 
 
 /*! Monitored Takeoff
@@ -58,7 +63,7 @@ bool trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], d
     Use unless you want to do other stuff during takeoff - this will block
     the main thread.
 !*/
-bool monitoredTakeoff(DJI::OSDK::Vehicle* vehiclePtr, int timeout = 1);
+bool monitoredTakeoff(DJI::OSDK::Vehicle *vehiclePtr, int timeout = 1);
 
 // Examples of commonly used Flight Mode APIs
 
@@ -90,7 +95,7 @@ bool moveByAttitudeThrust(DJI::OSDK::Vehicle *vehicle, float xRoll,
     and only returns when takeoff is complete.
 
 !*/
-bool monitoredLanding(DJI::OSDK::Vehicle* vehiclePtr, int timeout = 1);
+bool monitoredLanding(DJI::OSDK::Vehicle *vehiclePtr, int timeout = 1);
 
 // Helper Functions
 
@@ -99,10 +104,10 @@ bool monitoredLanding(DJI::OSDK::Vehicle* vehiclePtr, int timeout = 1);
  *
  * Accurate when distances are small.
 !*/
-void localOffsetFromGpsOffset(DJI::OSDK::Vehicle*             vehicle,
-                              DJI::OSDK::Telemetry::Vector3f& deltaNed,
-                              void* target, void* origin);
+void localOffsetFromGpsOffset(DJI::OSDK::Vehicle *vehicle,
+                              DJI::OSDK::Telemetry::Vector3f &deltaNed,
+                              void *target, void *origin);
 
-DJI::OSDK::Telemetry::Vector3f toEulerAngle(void* quaternionData);
+DJI::OSDK::Telemetry::Vector3f toEulerAngle(void *quaternionData);
 
 #endif //THESIS_DJI_PI_TELEMETRYCONTROLTEST_HPP

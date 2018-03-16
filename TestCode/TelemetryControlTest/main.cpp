@@ -12,12 +12,11 @@ using namespace DJI::OSDK::Telemetry;
  *
  */
 int
-main(int argc, char** argv)
-{
+main(int argc, char **argv) {
     std::ofstream outfile;
     //std::ofstream outfile ("QuaterionRecent.txt");
-    outfile.open ("QuaterionRecent.txt", std::ofstream::app);
-    outfile << "\n \n New Test" <<std::endl;
+    outfile.open("QuaterionRecent.txt", std::ofstream::app);
+    outfile << "\n \n New Test" << std::endl;
     outfile.close();
 
     //FILE * outputfile;
@@ -25,15 +24,14 @@ main(int argc, char** argv)
     //fprintf(outputfile,"\n \n \n \n New Test");
 
     // Test Output
-    std::cout<< "Dialogue Test" <<std::endl;
+    std::cout << "Dialogue Test" << std::endl;
     // Initialize variables
     int functionTimeout = 1;
 
     // Setup OSDK.
     LinuxSetup linuxEnvironment(argc, argv);
-    Vehicle* vehicle = linuxEnvironment.getVehicle();
-    if (vehicle == NULL)
-    {
+    Vehicle *vehicle = linuxEnvironment.getVehicle();
+    if (vehicle == NULL) {
         std::cout << "Vehicle not initialized, exiting.\n";
         return -1;
     }
@@ -79,15 +77,14 @@ main(int argc, char** argv)
 
     //! Test Waypoint flight points - expandable for nx4
     std::vector<std::vector<float>> waypoints;
-    waypoints.push_back({0,0,5,0});
-    waypoints.push_back({0,0,7,0});
-    waypoints.push_back({0,5,7,0});
-    waypoints.push_back({-5,10,7,0});
-    waypoints.push_back({-5,5,7,0});
-    waypoints.push_back({0,0,5,0});
+    waypoints.push_back({0, 0, 5, 0});
+    waypoints.push_back({0, 0, 7, 0});
+    waypoints.push_back({0, 5, 7, 0});
+    waypoints.push_back({-5, 10, 7, 0});
+    waypoints.push_back({-5, 5, 7, 0});
+    waypoints.push_back({0, 0, 5, 0});
 
-    switch (inputChar)
-    {
+    switch (inputChar) {
         case 'a':
             monitoredTakeoff(vehicle);
             monitoredLanding(vehicle);
@@ -106,7 +103,7 @@ main(int argc, char** argv)
             monitoredLanding(vehicle);
             break;
         case '#':
-        std::cin >> inputChar;
+            std::cin >> inputChar;
             if (inputChar == 'c') {
                 monitoredTakeoff(vehicle);
                 moveByPositionOffset(vehicle, 0, 0, 5, 0);
@@ -115,17 +112,17 @@ main(int argc, char** argv)
             }
             break;
         case 'd':
-            std::cout<<"May need to adjust attitude threshold "<<std::endl;
-            std::cout<<"Roll Angle Degrees"<<std::endl;
+            std::cout << "May need to adjust attitude threshold " << std::endl;
+            std::cout << "Roll Angle Degrees" << std::endl;
             float iRol;
             std::cin >> iRol;
-            std::cout<<"Pitch Angle Degrees"<<std::endl;
+            std::cout << "Pitch Angle Degrees" << std::endl;
             float iPit;
             std::cin >> iPit;
-            std::cout<<"Yaw Angle Degrees"<<std::endl;
+            std::cout << "Yaw Angle Degrees" << std::endl;
             float iYaw;
             std::cin >> iYaw;
-            std::cout<<"Thrust Percentage, from 0 - 100: Hover near 25"<<std::endl;
+            std::cout << "Thrust Percentage, from 0 - 100: Hover near 25" << std::endl;
             float iThr;
             std::cin >> iThr;
 
@@ -147,31 +144,34 @@ main(int argc, char** argv)
             monitoredLanding(vehicle);
             break;
         case 'g':
-            for (int nn=0;nn<waypoints.size();nn=nn+1)
-            {
-                float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
+            for (int nn = 0; nn < waypoints.size(); nn = nn + 1) {
+                float xOf = waypoints[nn][0];
+                float yOf = waypoints[nn][1];
+                float zOf = waypoints[nn][2];
                 float yawSpe = waypoints[nn][3];
-                std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
+                std::cout << "x= " << xOf << " ;y= " << yOf << " ;z= " << zOf << " ;yaw = " << yawSpe << std::endl;
             }
-            trajectoryWaypointOffsetControllerTest(vehicle,waypoints);
+            trajectoryWaypointOffsetControllerTest(vehicle, waypoints);
             break;
         case 'h':
-            for (int nn=0;nn<waypoints.size();nn=nn+1)
-            {
-                float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
+            for (int nn = 0; nn < waypoints.size(); nn = nn + 1) {
+                float xOf = waypoints[nn][0];
+                float yOf = waypoints[nn][1];
+                float zOf = waypoints[nn][2];
                 float yawSpe = waypoints[nn][3];
-                std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
+                std::cout << "x= " << xOf << " ;y= " << yOf << " ;z= " << zOf << " ;yaw = " << yawSpe << std::endl;
             }
-            trajectoryWaypointControllerTestTimer(vehicle,waypoints);
+            trajectoryWaypointControllerTestTimer(vehicle, waypoints);
             break;
         case 'H':
-            for (int nn=0;nn<waypoints.size();nn=nn+1)
-            {
-                float xOf = waypoints[nn][0]; float yOf = waypoints[nn][1]; float zOf = waypoints[nn][2];
+            for (int nn = 0; nn < waypoints.size(); nn = nn + 1) {
+                float xOf = waypoints[nn][0];
+                float yOf = waypoints[nn][1];
+                float zOf = waypoints[nn][2];
                 float yawSpe = waypoints[nn][3];
-                std::cout << "x= "<<xOf<< " ;y= "<<yOf<< " ;z= "<<zOf<<" ;yaw = "<< yawSpe << std::endl;
+                std::cout << "x= " << xOf << " ;y= " << yOf << " ;z= " << zOf << " ;yaw = " << yawSpe << std::endl;
             }
-            trajectoryWaypointControllerTest(vehicle,waypoints);
+            trajectoryWaypointControllerTest(vehicle, waypoints);
             break;
         default:
             break;
