@@ -12,6 +12,8 @@ Wifi - Adhoc by defalut
 "crontab -e "
 "@reboot bash /usr/local/bin/adhoc_config.sh" using file from /bin/ in this repository
 
+
+
 %% Debug text - trial 1
 
 STATUS/1 @ getErrorCodeMessage, L644: iVW▒
