@@ -85,9 +85,8 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 }
 
 bool
-trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], int timeout) {
+trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
     int nDim = sizeof(aMan) / sizeof(aMan[0]);
-    bool trajRun = true;
 
     struct quadUAV {
         double mass = 2.462; // kg
@@ -96,20 +95,25 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         double density = 1.225; //
     };
     quadUAV UAV;
-    /*! Takeoff and time set
+    /*! time set
      *
      !*/
-    monitoredTakeoff(vehicle);
-    moveByPositionOffset(vehicle, 0, 0, 5, 0);
+
     auto startPos = vehicle->subscribe->getValue<TOPIC_GPS_FUSED>();
     auto curPos = startPos;
 
     auto tTrajOrig = Clock::now();                                // Initialization Time
+    auto tTraj = Clock::now();                            // Current run time
+    std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+    auto tTrajN = tTrajTemp.count();
+    double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
 
-    while (trajRun) {
-        auto tTraj = Clock::now();                            // Current run time
-        std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
-        auto tTrajN = tTrajTemp.count();
+    while (tTrajN < tTrajEnd) {
+        tTraj = Clock::now();                            // Current run time
+        tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+        tTrajN = tTrajTemp.count();
+
+        // Getting state information
         double xTr;
         double yTr;
         double zTr;
@@ -134,10 +138,10 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             yddTr = yddTr + nn * (nn - 1) * bMan[nn] * pow(tTrajN, nn - 2);
             zddTr = zddTr + nn * (nn - 1) * cMan[nn] * pow(tTrajN, nn - 2);
         }
-        double psiTr = atan2(ydTr, xdTr);
+        double psiTr = atan2(ydTr, xdTr);   //yaw
         double psidTr = (yddTr * xdTr - ydTr * xddTr) * pow(cos(psiTr), 2) / pow(xdTr, 2);
 
-        double gamTr = atan2(-zdTr, sqrt(pow(xdTr, 2) + pow(ydTr, 2)));
+        double gamTr = atan2(-zdTr, sqrt(pow(xdTr, 2) + pow(ydTr, 2))); // angle of attack
         double gamdTr =
                 (zdTr * (xdTr * xddTr + ydTr * yddTr) - zddTr * (pow(xdTr, 2) + pow(ydTr, 2))) * pow(cos(psiTr), 2) /
                 sqrt(pow(xdTr, 3) + pow(ydTr, 3));
@@ -145,7 +149,18 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         double VaTr = sqrt(pow(xdTr, 2) + pow(ydTr, 2) + pow(zdTr, 2));
         double VadTr = (xdTr * xddTr + ydTr * yddTr + zdTr * zddTr) / sqrt(pow(xdTr, 2) + pow(ydTr, 2) + pow(zdTr, 2));
 
-        double phi = atan2(cos(gamTr) * psidTr, (gamdTr + cos(gamTr) * UAV.gravity / VaTr));
+        double phiTr = atan2(cos(gamTr) * psidTr, (gamdTr + cos(gamTr) * UAV.gravity / VaTr)); //pitch
+
+        // flight control output
+        if (!fStyle) {
+            auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
+            auto psiTrTemp = float(psiTr-psiTrOld);
+            moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp;
+            xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
+        }
+        else if (fStyle) {
+            moveByAttitudeThrust(vehicle,roll ,phiTr, thrust, psiTr);
+        }
 
     }
     return true;

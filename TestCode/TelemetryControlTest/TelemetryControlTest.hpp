@@ -52,9 +52,11 @@ bool trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::ve
     trajectory planner, and implements them into a system to run using the telemetry test thrust controller.
     May want to migrate this control to use the api thrust, and do checking internally / with
     another function.
+    This can be used for 1 part of a piecewise trajectory, and can be readily scaled, (and probably is/will be
+    in this code.  fStyle true runs for thrust and attitude, while false uses position control.
 !*/
 bool trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[],
-                                   int timeout = 1);
+                                   double tTrajEnd, bool fStyle, int timeout = 1);
 
 
 /*! Monitored Takeoff

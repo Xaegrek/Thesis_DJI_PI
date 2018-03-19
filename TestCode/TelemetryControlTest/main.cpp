@@ -74,6 +74,7 @@ main(int argc, char **argv) {
     double aMan[] = {0, 3.9691e1, 4.7873e-1, -2.8244e-5, -2.2783e-4, -1.2762e-3, 8.7194e-5};
     double bMan[] = {9.1440, 1.0635e1, -2.7946, 2.0438e-1, -2.5241e-2, 4.3437e-3, -2.2276e-4};
     double cMan[] = {-1.6764e1, 2.1535, 2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, 3.1117e-5};
+    double timeTrajEnd = 15;
 
     //! Test Waypoint flight points - expandable for nx4
     std::vector<std::vector<float>> waypoints;
@@ -140,7 +141,10 @@ main(int argc, char **argv) {
             monitoredLanding(vehicle);
             break;
         case 'f':
-            //trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan);
+            bool ctrlStyleThrust = false;
+            monitoredTakeoff(vehicle);
+            moveByPositionOffset(vehicle, 0, 0, 5, 0);
+            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, ctrlStyleThrust);
             monitoredLanding(vehicle);
             break;
         case 'g':
