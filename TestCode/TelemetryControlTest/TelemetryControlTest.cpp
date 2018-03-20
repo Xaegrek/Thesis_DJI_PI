@@ -113,25 +113,25 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         tTrajN = tTrajTemp.count();
 
         // Getting state information
-        double xTr;
-        double yTr;
-        double zTr;
+        double xTr=0;
+        double yTr=0;
+        double zTr=0;
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
             zTr = zTr + cMan[nn] * pow(tTrajN, nn);
         }
-        double xdTr;
-        double ydTr;
-        double zdTr;
+        double xdTr=0;
+        double ydTr=0;
+        double zdTr=0;
         for (int nn = 1; nn <= nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
-        double xddTr;
-        double yddTr;
-        double zddTr;
+        double xddTr=0;
+        double yddTr=0;
+        double zddTr=0;
         for (int nn = 2; nn <= nDim; nn = nn + 1) {
             xddTr = xddTr + nn * (nn - 1) * aMan[nn] * pow(tTrajN, nn - 2);
             yddTr = yddTr + nn * (nn - 1) * bMan[nn] * pow(tTrajN, nn - 2);
@@ -170,20 +170,20 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         tTrajN = tTrajTemp.count();
 
-        double xTr;
-        double yTr;
+        double xTr=0;
+        double yTr=0;
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
         }
-        double xdTr;
-        double ydTr;
+        double xdTr=0;
+        double ydTr=0;
         for (int nn = 1; nn <= nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
         }
         double psiTr = atan2(ydTr, xdTr);   //yaw
-        moveByPositionOffset(vehicle,-xTr,-yTr,5,-psiTr);
+        moveByPositionOffset(vehicle,float(-xTr),float(-yTr),5,float(-psiTr));
         std::cout<<xTr<<yTr<<5<<psiTr <<std::endl;
 
     }
