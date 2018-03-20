@@ -165,6 +165,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     }
     //! End position to go back to launchish
     {
+        std::cout<<"going back to launch"<<std::endl;
         tTraj = Clock::now();                            // Current run time
         tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         tTrajN = tTrajTemp.count();
