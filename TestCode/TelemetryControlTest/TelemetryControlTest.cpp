@@ -155,11 +155,11 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         if (!fStyle) {
             auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
             auto psiTrTemp = float(psiTr-psiTrOld);
-            moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp;
+            moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
         }
         else if (fStyle) {
-            moveByAttitudeThrust(vehicle,roll ,phiTr, thrust, psiTr);
+            //moveByAttitudeThrust(vehicle,roll ,phiTr, thrust, psiTr);
         }
 
     }
