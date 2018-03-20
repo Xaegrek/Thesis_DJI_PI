@@ -181,7 +181,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
         }
         double psiTr = atan2(ydTr, xdTr);   //yaw
-        moveByPositionOffset(vehicle,-xTr,-yTr,5,-psiTr;
+        moveByPositionOffset(vehicle,-xTr,-yTr,5,-psiTr);
     }
     return true;
 }
