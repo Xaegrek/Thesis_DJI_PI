@@ -162,6 +162,27 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         }
 
     }
+    //! End position to go back to launchish
+    {
+        tTraj = Clock::now();                            // Current run time
+        tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+        tTrajN = tTrajTemp.count();
+
+        double xTr;
+        double yTr;
+        for (int nn = 0; nn <= nDim; nn = nn + 1) {
+            xTr = xTr + aMan[nn] * pow(tTrajN, nn);
+            yTr = yTr + bMan[nn] * pow(tTrajN, nn);
+        }
+        double xdTr;
+        double ydTr;
+        for (int nn = 1; nn <= nDim; nn = nn + 1) {
+            xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
+            ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
+        }
+        double psiTr = atan2(ydTr, xdTr);   //yaw
+        moveByPositionOffset(vehicle,-xTr,-yTr,5,-psiTr;
+    }
     return true;
 }
 

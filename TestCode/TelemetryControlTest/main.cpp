@@ -59,7 +59,7 @@ main(int argc, char **argv) {
             << "| [e] Takeoff + Attitude and Thrust  + Landing with short timeouts|"
             << std::endl;
     std::cout
-            << "| [f] Takeoff + polynomial follow + landing                       |"
+            << "| [f] Takeoff + polynomial follow + landing at 0,0                |"
             << std::endl;
     std::cout
             << "| [g] Takeoff + waypoint-style offset pathing + landing           |"
