@@ -87,7 +87,7 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
     int nDim = sizeof(aMan) / sizeof(aMan[0]);
-
+    std::cout<<"inside controller"<<std::endl;
     struct quadUAV {
         double mass = 2.462; // kg
         double gravity = 9.81; // m/s/s
