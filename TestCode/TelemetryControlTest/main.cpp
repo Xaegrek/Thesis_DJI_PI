@@ -147,6 +147,7 @@ main(int argc, char **argv) {
             monitoredLanding(vehicle);
             break;
         case 'f':
+
             ctrlStyleThrust = false;
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0);

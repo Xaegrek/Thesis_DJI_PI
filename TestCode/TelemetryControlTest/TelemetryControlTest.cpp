@@ -87,7 +87,6 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
     int nDim = sizeof(aMan) / sizeof(aMan[0]);
-    std::cout<<"inside controller"<<std::endl;
     struct quadUAV {
         double mass = 2.462; // kg
         double gravity = 9.81; // m/s/s
@@ -107,6 +106,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
     auto tTrajN = tTrajTemp.count();
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
+    std::cout<<"inside controller"<<std::endl;
 
     while (tTrajN < tTrajEnd) {
         tTraj = Clock::now();                            // Current run time
