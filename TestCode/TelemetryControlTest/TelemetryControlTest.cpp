@@ -87,6 +87,7 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
     int nDim = sizeof(aMan) / sizeof(aMan[0]);
+    for (int nn = 0; nn <= nDim; nn = nn + 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     struct quadUAV {
         double mass = 2.462; // kg
         double gravity = 9.81; // m/s/s
@@ -99,7 +100,6 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
      *     auto startPos = vehicle->subscribe->getValue<TOPIC_GPS_FUSED>();
      *     auto curPos = startPos;
      !*/
-    
 
     auto tTrajOrig = Clock::now();                                // Initialization Time
     auto tTraj = Clock::now();                            // Current run time
