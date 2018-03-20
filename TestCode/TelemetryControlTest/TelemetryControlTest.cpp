@@ -155,6 +155,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
             auto psiTrTemp = float(psiTr-psiTrOld);
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
+            std::cout<<xTrTemp<<yTrTemp<<zTrTemp<<psiTrTemp <<std::endl;
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
         }
         else if (fStyle) {
@@ -182,6 +183,8 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         }
         double psiTr = atan2(ydTr, xdTr);   //yaw
         moveByPositionOffset(vehicle,-xTr,-yTr,5,-psiTr);
+        std::cout<<xTr<<yTr<<5<<psiTr <<std::endl;
+
     }
     return true;
 }
