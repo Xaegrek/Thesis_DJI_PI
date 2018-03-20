@@ -87,24 +87,40 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
     int nDim = sizeof(aMan) / sizeof(aMan[0]);
+    std::cout<<"1"<<std::endl;
+
     struct quadUAV {
         double mass = 2.462; // kg
         double gravity = 9.81; // m/s/s
         double weight = mass * gravity; //newtons
         double density = 1.225; //
     };
+    std::cout<<"2"<<std::endl;
+
     quadUAV UAV;
     /*! time set
      *
      !*/
+    std::cout<<"3"<<std::endl;
 
     auto startPos = vehicle->subscribe->getValue<TOPIC_GPS_FUSED>();
+    std::cout<<"4"<<std::endl;
+
     auto curPos = startPos;
+    std::cout<<"5"<<std::endl;
 
     auto tTrajOrig = Clock::now();                                // Initialization Time
+    std::cout<<"6"<<std::endl;
+
     auto tTraj = Clock::now();                            // Current run time
+    std::cout<<"7"<<std::endl;
+
     std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+    std::cout<<"8"<<std::endl;
+
     auto tTrajN = tTrajTemp.count();
+    std::cout<<"9"<<std::endl;
+
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
     std::cout<<"inside controller"<<std::endl;
 
