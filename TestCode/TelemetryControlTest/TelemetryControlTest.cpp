@@ -87,6 +87,7 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
     int nDim = sizeof(aMan) / sizeof(aMan[0]);
+
     for (int nn = 0; nn <= nDim; nn = nn + 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     struct quadUAV {
         double mass = 2.462; // kg
@@ -150,6 +151,13 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
         double phiTr = atan2(cos(gamTr) * psidTr, (gamdTr + cos(gamTr) * UAV.gravity / VaTr)); //pitch
 
+
+        std::ofstream outfile;
+        outfile.open("QuaterionRecent.txt", std::ofstream::app);
+        outfile << "\n Position Trajectory Request"  << std::endl;
+        outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< zTr << std::endl;
+        outfile.close();
+
         // flight control output
         if (!fStyle) {
             auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
@@ -183,10 +191,19 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
         }
         double psiTr = atan2(ydTr, xdTr);   //yaw
+
+        //! file write position request
+        std::ofstream outfile;
+        outfile.open("QuaterionRecent.txt", std::ofstream::app);
+        outfile << "\n Requested Trajecotry Position"  << std::endl;
+        outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< 5 << std::endl;
+        outfile.close();
+
         moveByPositionOffset(vehicle,float(-xTr),float(-yTr),5,float(-psiTr));
         std::cout<<xTr<<yTr<<5<<psiTr <<std::endl;
 
     }
+
     return true;
 }
 
@@ -298,6 +315,10 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
 
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
+    std::ofstream outfile;
+    outfile.open("QuaterionRecent.txt", std::ofstream::app);
+    outfile << "\n new test for position and attitude"  << std::endl;
+
 
     if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
         // Telemetry: Verify the subscription
@@ -458,6 +479,20 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         yOffsetRemaining = yOffsetDesired - localOffset.y;
         zOffsetRemaining = zOffsetDesired - (-localOffset.z);
 
+        //! File Writing
+        std::ostringstream osstemp;
+        std::string quaternionWrite;
+        osstemp << "Attitude Quaternion   (w,x,y,z); Position (x,y,z)       = " << broadcastQ.q0
+                << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
+                << broadcastQ.q3 << ";" <<localOffset.x << ", "<< localOffset.y << ", "<<localOffset.z
+                << "\n";
+        quaternionWrite = osstemp.str();
+        std::cout << quaternionWrite << std::endl;
+        outfile << "Attitude Quaternion   (w,x,y,z); Position (x,y,z)        = " << broadcastQ.q0
+                << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
+                << broadcastQ.q3 << ";" <<localOffset.x << ", "<< localOffset.y << ", "<<localOffset.z
+                << "\n" << std::endl;
+
         //! See if we need to modify the setpoint
         if (std::abs(xOffsetRemaining) < speedFactor)
             xCmd = xOffsetRemaining;
@@ -524,7 +559,8 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
                             "to a clean state.\n";
         }
     }
-
+    outfile << "elapsed time was " << elapsedTimeInMs << std::endl;
+    outfile.close();
     return ACK::SUCCESS;
 }
 
