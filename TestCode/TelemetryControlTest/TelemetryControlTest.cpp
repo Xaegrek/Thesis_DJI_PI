@@ -167,8 +167,8 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         else if (fStyle) {
             auto xdTrTemp =float (xdTr-xdTrOld); auto ydTrTemp =float (ydTr-ydTrOld); auto zdTrTemp =float (zdTr-zdTrOld);
             auto psidTrTemp = float(psidTr-psidTrOld);
-            moveByVelocityRequest(vehicle,xdTrTemp,ydTrTemp,zdTrTemp,psidTrTemp);
-            std::cout<<xdTrTemp<<ydTrTemp<<zdTrTemp<<psidTrTemp <<std::endl;
+            moveByVelocityRequest(vehicle,xdTr,ydTr,zdTr,psidTrTemp);
+            std::cout<<xdTr<<ydTr<<zdTrTemp<<psidTr <<std::endl;
             xdTrOld = xdTr; ydTrOld = ydTr; zdTrOld = zdTr; psidTrOld = psidTr;
         }
 
@@ -194,7 +194,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         //! file write position request
         std::ofstream outfile;
         outfile.open("QuaterionRecent.txt", std::ofstream::app);
-        outfile << "\n Requested Trajecotry Position"  << std::endl;
+        outfile << "\n Requested Trajectory Position"  << std::endl;
         outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< 5 << std::endl;
         outfile.close();
 
