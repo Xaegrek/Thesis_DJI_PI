@@ -590,57 +590,6 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
     outfile.open("QuaterionRecent.txt", std::ofstream::app);
     outfile << "\n new test for Velocity and attitude rate"  << std::endl;
 
-    // Wait for data to come in
-    sleep(1);
-
-    // Get data
-
-    // Global position retrieved via subscription
-    Telemetry::TypeMap<TOPIC_GPS_VELOCITY>::type currentSubscriptionGPS;
-    Telemetry::TypeMap<TOPIC_GPS_VELOCITY>::type originSubscriptionGPS;
-    // Global position retrieved via broadcast
-    Telemetry::Velocity::data currentBroadcastGP;
-    Telemetry::Velocity::data originBroadcastGP;
-
-    // Convert position offset from first position to local coordinates
-    Telemetry::Velocity::data localOffset;
-
-    if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
-        currentSubscriptionGPS = vehicle->subscribe->getValue<TOPIC_GPS_VELOCITY>();
-        originSubscriptionGPS = currentSubscriptionGPS;
-
-    } else {
-        currentBroadcastGP = vehicle->broadcast->getVelocity();
-        originBroadcastGP = currentBroadcastGP;
-
-    }
-
-    // Get initial offset. We will update this in a loop later.
-    double xOffsetRemaining = xVelocityDesired - localOffset.x;
-    double yOffsetRemaining = yVelocityDesired - localOffset.y;
-    double zOffsetRemaining = zVelocityDesired - (-localOffset.z);
-
-
-    // Conversions
-    double yawRateDesiredRad = DEG2RAD * yawRateDesired;
-    double yawThresholdInRad = DEG2RAD * yawThresholdInDeg;
-
-    //! Get Euler angle
-
-    // Quaternion retrieved via subscription
-    Telemetry::TypeMap<TOPIC_QUATERNION>::type subscriptionQ;
-    // Quaternion retrieved via broadcast
-    Telemetry::Quaternion broadcastQ;
-
-    double yawInRad;
-    if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
-        subscriptionQ = vehicle->subscribe->getValue<TOPIC_QUATERNION>();
-        yawInRad = toEulerAngle((static_cast<void *>(&subscriptionQ))).z / DEG2RAD;
-    } else {
-        broadcastQ = vehicle->broadcast->getQuaternion();
-        yawInRad = toEulerAngle((static_cast<void *>(&broadcastQ))).z / DEG2RAD;
-    }
-
     int elapsedTimeInMs = 0;
     int withinBoundsCounter = 0;
     int outOfBounds = 0;
@@ -655,104 +604,24 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
     if (vehicle->isM100() || vehicle->isLegacyM600()) {
         zDeadband = 0.12 * 10;
     }
-
-    /*! Calculate the inputs to send the position controller. We implement basic
-     *  receding setpoint position control and the setpoint is always 1 m away
-     *  from the current position - until we get within a threshold of the goal.
-     *  From that point on, we send the remaining distance as the setpoint.
-     */
-    if (xVelocityDesired > 0)
-        xCmd = (xVelocityDesired < speedFactor) ? xVelocityDesired : speedFactor;
-    else if (xVelocityDesired < 0)
-        xCmd =
-                (xVelocityDesired > -1 * speedFactor) ? xVelocityDesired : -1 * speedFactor;
-    else
-        xCmd = 0;
-
-    if (yVelocityDesired > 0)
-        yCmd = (yVelocityDesired < speedFactor) ? yVelocityDesired : speedFactor;
-    else if (yVelocityDesired < 0)
-        yCmd =
-                (yVelocityDesired > -1 * speedFactor) ? yVelocityDesired : -1 * speedFactor;
-    else
-        yCmd = 0;
-
-    if (zVelocityDesired > 0)
-        zCmd = (zVelocityDesired < speedFactor) ? zVelocityDesired : speedFactor;
-    else if (zVelocityDesired < 0)
-        zCmd =
-                (zVelocityDesired > -1 * speedFactor) ? zVelocityDesired : -1 * speedFactor;
-    else
-        zCmd = 0;
+    xCmd = xVelocityDesired; yCmd = yVelocityDesired; zCmd = zVelocityDesired;
 
     //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec) {
 
         vehicle->control->velocityAndYawRateCtrl(xCmd, yCmd, zCmd,
-                                             yawRateDesiredRad / DEG2RAD);
+                                             yawRateDesired);
 
         usleep(cycleTimeInMs * 1000);
         elapsedTimeInMs += cycleTimeInMs;
 
-        //! Get current position in required coordinates and units
-        if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
-            subscriptionQ = vehicle->subscribe->getValue<TOPIC_QUATERNION>();
-            yawInRad = toEulerAngle((static_cast<void *>(&subscriptionQ))).z;
-            currentSubscriptionGPS = vehicle->subscribe->getValue<TOPIC_GPS_FUSED>();
-            localOffsetFromGpsOffset(vehicle, localOffset,
-                                     static_cast<void *>(&currentSubscriptionGPS),
-                                     static_cast<void *>(&originSubscriptionGPS));
-        } else {
-            broadcastQ = vehicle->broadcast->getQuaternion();
-            yawInRad = toEulerAngle((static_cast<void *>(&broadcastQ))).z;
-            currentBroadcastGP = vehicle->broadcast->getGlobalPosition();
-            localOffsetFromGpsOffset(vehicle, localOffset,
-                                     static_cast<void *>(&currentBroadcastGP),
-                                     static_cast<void *>(&originBroadcastGP));
-        }
-
-        //! See how much farther we have to go
-        xOffsetRemaining = xVelocityDesired - localOffset.x;
-        yOffsetRemaining = yVelocityDesired - localOffset.y;
-        zOffsetRemaining = zVelocityDesired - (-localOffset.z);
-
         //! File Writing
-        std::ostringstream osstemp;
-        std::string quaternionWrite;
-        osstemp << "Attitude Quaternion   (w,x,y,z); Position (x,y,z)       = " << broadcastQ.q0
-                << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
-                << broadcastQ.q3 << ";" <<localOffset.x << ", "<< localOffset.y << ", "<<localOffset.z
-                << "\n";
-        quaternionWrite = osstemp.str();
-        std::cout << quaternionWrite << std::endl;
-        outfile << "Attitude Quaternion   (w,x,y,z); Position (x,y,z)        = " << broadcastQ.q0
-                << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
-                << broadcastQ.q3 << ";" <<localOffset.x << ", "<< localOffset.y << ", "<<localOffset.z
+
+        outfile << "Command Request Velocity and Yaw Rate = " << xCmd
+                << ", " << yCmd << ", " << zCmd << ", "
+                << yawRateDesired
                 << "\n" << std::endl;
-
-        //! See if we need to modify the setpoint
-        if (std::abs(xOffsetRemaining) < speedFactor)
-            xCmd = xOffsetRemaining;
-        if (std::abs(yOffsetRemaining) < speedFactor)
-            yCmd = yOffsetRemaining;
-
-        if (vehicle->isM100() && std::abs(xOffsetRemaining) < posThresholdInM &&
-            std::abs(yOffsetRemaining) < posThresholdInM &&
-            std::abs(yawInRad - yawRateDesiredRad) < yawThresholdInRad) {
-            //! 1. We are within bounds; start incrementing our in-bound counter
-            withinBoundsCounter += cycleTimeInMs;
-        } else if (std::abs(xOffsetRemaining) < posThresholdInM &&
-                   std::abs(yOffsetRemaining) < posThresholdInM &&
-                   std::abs(zOffsetRemaining) < zDeadband &&
-                   std::abs(yawInRad - yawRateDesiredRad) < yawThresholdInRad) {
-            //! 1. We are within bounds; start incrementing our in-bound counter
-            withinBoundsCounter += cycleTimeInMs;
-        } else {
-            if (withinBoundsCounter != 0) {
-                //! 2. Start incrementing an out-of-bounds counter
-                outOfBounds += cycleTimeInMs;
-            }
-        }
+        
         //! 3. Reset withinBoundsCounter if necessary
         if (outOfBounds > outOfControlBoundsTimeLimit) {
             withinBoundsCounter = 0;
