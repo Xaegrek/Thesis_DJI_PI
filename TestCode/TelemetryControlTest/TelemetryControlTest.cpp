@@ -590,73 +590,36 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
     outfile.open("QuaterionRecent.txt", std::ofstream::app);
     outfile << "\n new test for Velocity and attitude rate"  << std::endl;
 
-
-    if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
-        // Telemetry: Verify the subscription
-        ACK::ErrorCode subscribeStatus;
-        subscribeStatus = vehicle->subscribe->verify(responseTimeout);
-        if (ACK::getError(subscribeStatus) != ACK::SUCCESS) {
-            ACK::getErrorCodeMessage(subscribeStatus, func);
-            return false;
-        }
-
-        // Telemetry: Subscribe to quaternion, fused lat/lon and altitude at freq 50
-        // Hz
-        pkgIndex = 0;
-        int freq = 50;
-        TopicName topicList50Hz[] = {TOPIC_QUATERNION, TOPIC_GPS_FUSED};
-        int numTopic = sizeof(topicList50Hz) / sizeof(topicList50Hz[0]);
-        bool enableTimestamp = false;
-
-        bool pkgStatus = vehicle->subscribe->initPackageFromTopicList(
-                pkgIndex, numTopic, topicList50Hz, enableTimestamp, freq);
-        if (!(pkgStatus)) {
-            return pkgStatus;
-        }
-        subscribeStatus =
-                vehicle->subscribe->startPackage(pkgIndex, responseTimeout);
-        if (ACK::getError(subscribeStatus) != ACK::SUCCESS) {
-            ACK::getErrorCodeMessage(subscribeStatus, func);
-            // Cleanup before return
-            vehicle->subscribe->removePackage(pkgIndex, responseTimeout);
-            return false;
-        }
-    }
-
     // Wait for data to come in
     sleep(1);
 
     // Get data
 
     // Global position retrieved via subscription
-    Telemetry::TypeMap<TOPIC_GPS_FUSED>::type currentSubscriptionGPS;
-    Telemetry::TypeMap<TOPIC_GPS_FUSED>::type originSubscriptionGPS;
+    Telemetry::TypeMap<TOPIC_GPS_VELOCITY>::type currentSubscriptionGPS;
+    Telemetry::TypeMap<TOPIC_GPS_VELOCITY>::type originSubscriptionGPS;
     // Global position retrieved via broadcast
-    Telemetry::GlobalPosition currentBroadcastGP;
-    Telemetry::GlobalPosition originBroadcastGP;
+    Telemetry::Velocity::data currentBroadcastGP;
+    Telemetry::Velocity::data originBroadcastGP;
 
     // Convert position offset from first position to local coordinates
-    Telemetry::Vector3f localOffset;
-    Telemetry::Velocity::Vector3f localVelocity;
+    Telemetry::Velocity::data localOffset;
 
     if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
-        currentSubscriptionGPS = vehicle->subscribe->getValue<TOPIC_GPS_FUSED>();
+        currentSubscriptionGPS = vehicle->subscribe->getValue<TOPIC_GPS_VELOCITY>();
         originSubscriptionGPS = currentSubscriptionGPS;
-        localOffsetFromGpsOffset(vehicle, localOffset,
-                                 static_cast<void *>(&currentSubscriptionGPS),
-                                 static_cast<void *>(&originSubscriptionGPS));
+
     } else {
-        currentBroadcastGP = vehicle->broadcast->getGlobalPosition();
+        currentBroadcastGP = vehicle->broadcast->getVelocity();
         originBroadcastGP = currentBroadcastGP;
-        localOffsetFromGpsOffset(vehicle, localOffset,
-                                 static_cast<void *>(&currentBroadcastGP),
-                                 static_cast<void *>(&originBroadcastGP));
+
     }
 
     // Get initial offset. We will update this in a loop later.
-    double xOffsetRemaining = xOffsetDesired - localOffset.x;
-    double yOffsetRemaining = yOffsetDesired - localOffset.y;
-    double zOffsetRemaining = zOffsetDesired - (-localOffset.z);
+    double xOffsetRemaining = xVelocityDesired - localOffset.x;
+    double yOffsetRemaining = yVelocityDesired - localOffset.y;
+    double zOffsetRemaining = zVelocityDesired - (-localOffset.z);
+
 
     // Conversions
     double yawRateDesiredRad = DEG2RAD * yawRateDesired;
@@ -698,27 +661,29 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
      *  from the current position - until we get within a threshold of the goal.
      *  From that point on, we send the remaining distance as the setpoint.
      */
-    if (xOffsetDesired > 0)
-        xCmd = (xOffsetDesired < speedFactor) ? xOffsetDesired : speedFactor;
-    else if (xOffsetDesired < 0)
+    if (xVelocityDesired > 0)
+        xCmd = (xVelocityDesired < speedFactor) ? xVelocityDesired : speedFactor;
+    else if (xVelocityDesired < 0)
         xCmd =
-                (xOffsetDesired > -1 * speedFactor) ? xOffsetDesired : -1 * speedFactor;
+                (xVelocityDesired > -1 * speedFactor) ? xVelocityDesired : -1 * speedFactor;
     else
         xCmd = 0;
 
-    if (yOffsetDesired > 0)
-        yCmd = (yOffsetDesired < speedFactor) ? yOffsetDesired : speedFactor;
-    else if (yOffsetDesired < 0)
+    if (yVelocityDesired > 0)
+        yCmd = (yVelocityDesired < speedFactor) ? yVelocityDesired : speedFactor;
+    else if (yVelocityDesired < 0)
         yCmd =
-                (yOffsetDesired > -1 * speedFactor) ? yOffsetDesired : -1 * speedFactor;
+                (yVelocityDesired > -1 * speedFactor) ? yVelocityDesired : -1 * speedFactor;
     else
         yCmd = 0;
 
-    if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
-        zCmd = currentSubscriptionGPS.altitude + zOffsetDesired;
-    } else {
-        zCmd = currentBroadcastGP.altitude + zOffsetDesired;
-    }
+    if (zVelocityDesired > 0)
+        zCmd = (zVelocityDesired < speedFactor) ? zVelocityDesired : speedFactor;
+    else if (zVelocityDesired < 0)
+        zCmd =
+                (zVelocityDesired > -1 * speedFactor) ? zVelocityDesired : -1 * speedFactor;
+    else
+        zCmd = 0;
 
     //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec) {
@@ -747,9 +712,9 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
         }
 
         //! See how much farther we have to go
-        xOffsetRemaining = xOffsetDesired - localOffset.x;
-        yOffsetRemaining = yOffsetDesired - localOffset.y;
-        zOffsetRemaining = zOffsetDesired - (-localOffset.z);
+        xOffsetRemaining = xVelocityDesired - localOffset.x;
+        yOffsetRemaining = yVelocityDesired - localOffset.y;
+        zOffsetRemaining = zVelocityDesired - (-localOffset.z);
 
         //! File Writing
         std::ostringstream osstemp;
@@ -773,13 +738,13 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
 
         if (vehicle->isM100() && std::abs(xOffsetRemaining) < posThresholdInM &&
             std::abs(yOffsetRemaining) < posThresholdInM &&
-            std::abs(yawInRad - yawDesiredRad) < yawThresholdInRad) {
+            std::abs(yawInRad - yawRateDesiredRad) < yawThresholdInRad) {
             //! 1. We are within bounds; start incrementing our in-bound counter
             withinBoundsCounter += cycleTimeInMs;
         } else if (std::abs(xOffsetRemaining) < posThresholdInM &&
                    std::abs(yOffsetRemaining) < posThresholdInM &&
                    std::abs(zOffsetRemaining) < zDeadband &&
-                   std::abs(yawInRad - yawDesiredRad) < yawThresholdInRad) {
+                   std::abs(yawInRad - yawRateDesiredRad) < yawThresholdInRad) {
             //! 1. We are within bounds; start incrementing our in-bound counter
             withinBoundsCounter += cycleTimeInMs;
         } else {
