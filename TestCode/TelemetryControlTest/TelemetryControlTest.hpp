@@ -82,6 +82,15 @@ bool moveByPositionOffset(DJI::OSDK::Vehicle *vehicle, float xOffsetDesired,
                           float yawDesired, float posThresholdInM = 0.2,
                           float yawThresholdInDeg = 1.0);
 
+/*! Velocity Control. Allows you to set your current velocity.
+    The aircraft will adjust to that velocity and maintain it.
+    Typical use would be as a building block in an outer loop that does not
+    require many incredibly fast changes, such as a trajectory follower.
+!*/
+bool moveByVelocityRequest(DJI::OSDK::Vehicle *vehicle, float xVelocityDesired,
+                          float yVelocityDesired, float zVelocityDesired,
+                          float yawRateDesired, float posThresholdInM = 0.2,
+                          float yawThresholdInDeg = 1.0);
 /*! Altitude-Thrust Control. Allows you to set an attitude and thrust
     values. The aircraft will change to that state and maintain it.
     Typical use would be as a building block in an outer loop that does
