@@ -156,6 +156,10 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< zTr << std::endl;
         outfile.close();
 
+        std::cout << "time: " << tTrajN<<std::endl;
+        std::cout << "Position: " << xTr<< " , "<< yTr << " ,  "<<zTr<<std::endl;
+        std::cout << "Velocity: " << xdTr<< " , "<< ydTr << " ,  "<<zdTr<<std::endl<<std::endl;
+
         // flight control output
         if (!fStyle) {
             auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
