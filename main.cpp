@@ -59,12 +59,12 @@ int main() {
     double cMan[] = {-1.6764e1, 2.1535, 2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, 3.1117e-5};
 
     nDim = sizeof(aMan)/ sizeof(aMan[0]);
-    /*
 
-    *//*! Takeoff and time set
+    /*! Takeoff and time set
      *
      !*/
 
+    /*
     auto tTrajOrig   = Clock::now();                                // Initialization Time
 
     while (y<15) {
@@ -106,5 +106,6 @@ int main() {
         std::cout << "psi " << psiTr <<" psid " <<psidTr << " gam " << gamTr << " gamd " << gamdTr <<std::endl;
         usleep(1e6); y++;
     }
+    */
     return 0;
 }

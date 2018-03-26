@@ -107,6 +107,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
     auto tTrajN = tTrajTempCounter.count();
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
+    double xdTrOld = 0; double ydTrOld = 0; double zdTrOld = 0; double psidTrOld = 0; //used for offset in position tracking
 
     double xTr=0;double yTr=0; double zTr=0;
     double xdTr=0;double ydTr=0;double zdTr=0;
@@ -164,7 +165,11 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
         }
         else if (fStyle) {
-            //moveByAttitudeThrust(vehicle,roll ,phiTr, thrust, psiTr);
+            auto xdTrTemp =float (xdTr-xdTrOld); auto ydTrTemp =float (ydTr-ydTrOld); auto zdTrTemp =float (zdTr-zdTrOld);
+            auto psidTrTemp = float(psidTr-psidTrOld);
+            moveByPositionOffset(vehicle,xdTrTemp,ydTrTemp,zdTrTemp,psidTrTemp);
+            std::cout<<xdTrTemp<<ydTrTemp<<zdTrTemp<<psidTrTemp <<std::endl;
+            xdTrOld = xdTr; ydTrOld = ydTr; zdTrOld = zdTr; psidTrOld = psidTr;
         }
 
     }
