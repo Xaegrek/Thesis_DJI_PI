@@ -54,8 +54,8 @@ int main() {
     //waypoints[0] = {6,3,3,2};
     //waypoints[1] = {1.2,3.4,2.2,14.3};
     //std::cout << waypoints[0] << std::endl << waypoints[1][3] <<std::endl;
-    double aMan[] = {0, 3.9691e1, 4.7873e-1, -2.8244e-5, -2.2783e-4, -1.2762e-3, 8.7194e-5};
-    double bMan[] = {9.1440, 1.0635e1, -2.7946, 2.0438e-1, -2.5241e-2, 4.3437e-3, -2.2276e-4};
+    double aMan[] = {0, 3.9691e0, -4.7873e-1, 2.8244e-3, -2.2783e-4, -1.2762e-3, 8.7194e-5};
+    double bMan[] = {9.1440, 1.0635e1, -2.7946, 2.0438e-1, -2.5241e-2, 4.3437e-3, -1.9276e-4};
     double cMan[] = {-1.6764e1, 2.1535, 2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, 3.1117e-5};
 
     nDim = sizeof(aMan)/ sizeof(aMan[0]);
@@ -63,7 +63,7 @@ int main() {
 
     *//*! Takeoff and time set
      *
-     !*//*
+     !*/
 
     auto tTrajOrig   = Clock::now();                                // Initialization Time
 
@@ -71,21 +71,22 @@ int main() {
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
-        double xTr;
-        double yTr;
-        double zTr;
-        for (int nn = 0; nn <= nDim; nn = nn +1)
-        {
-            xTr         = xTr + aMan[nn] * pow(tTrajN,nn);
-            yTr         = yTr + bMan[nn] * pow(tTrajN,nn);
-            zTr         = zTr + cMan[nn] * pow(tTrajN,nn);
+
+        double xTr=0;
+        double yTr=0;
+        double zTr=0;
+        for (int nn = 0; nn <= nDim; nn = nn + 1) {
+            xTr = xTr + aMan[nn] * pow(tTrajN, nn);
+            yTr = yTr + bMan[nn] * pow(tTrajN, nn);
+            zTr = zTr + cMan[nn] * pow(tTrajN, nn);
         }
-        double xdTr; double ydTr; double zdTr;
-        for (int nn = 1; nn <= nDim; nn = nn +1)
-        {
-            xdTr        = xdTr + nn * aMan[nn] * pow(tTrajN,nn-1);
-            ydTr        = ydTr + nn * bMan[nn] * pow(tTrajN,nn-1);
-            zdTr        = zdTr + nn * cMan[nn] * pow(tTrajN,nn-1);
+        double xdTr=0;
+        double ydTr=0;
+        double zdTr=0;
+        for (int nn = 1; nn <= nDim; nn = nn + 1) {
+            xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
+            ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
+            zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
         double xddTr; double yddTr; double zddTr;
         for (int nn = 2; nn <= nDim; nn = nn +1)
@@ -104,6 +105,6 @@ int main() {
         std::cout << "x " << xTr << std::endl << "yd " << ydTr << std::endl << "zdd " << zddTr << std::endl;
         std::cout << "psi " << psiTr <<" psid " <<psidTr << " gam " << gamTr << " gamd " << gamdTr <<std::endl;
         usleep(1e6); y++;
-    }*/
+    }
     return 0;
 }

@@ -103,36 +103,34 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
      !*/
 
     auto tTrajOrig = Clock::now();                                // Initialization Time
-    auto tTraj = Clock::now();                            // Current run time
-    std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
-    auto tTrajN = tTrajTemp.count();
+
+    std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
+    auto tTrajN = tTrajTempCounter.count();
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
 
+    double xTr=0;double yTr=0; double zTr=0;
+    double xdTr=0;double ydTr=0;double zdTr=0;
+    double xddTr=0;double yddTr=0;double zddTr=0;
+
     while (tTrajN < tTrajEnd) {
-        tTraj = Clock::now();                            // Current run time
-        tTrajTemp = tTraj - tTrajOrig;    // Time since begining
-        tTrajN = tTrajTemp.count();
+        auto tTraj = Clock::now();                            // Current run time
+        std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+         tTrajN = tTrajTemp.count();
 
         // Getting state information
-        double xTr=0;
-        double yTr=0;
-        double zTr=0;
+
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
             zTr = zTr + cMan[nn] * pow(tTrajN, nn);
         }
-        double xdTr=0;
-        double ydTr=0;
-        double zdTr=0;
+
         for (int nn = 1; nn <= nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
-        double xddTr=0;
-        double yddTr=0;
-        double zddTr=0;
+
         for (int nn = 2; nn <= nDim; nn = nn + 1) {
             xddTr = xddTr + nn * (nn - 1) * aMan[nn] * pow(tTrajN, nn - 2);
             yddTr = yddTr + nn * (nn - 1) * bMan[nn] * pow(tTrajN, nn - 2);
@@ -150,7 +148,6 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         double VadTr = (xdTr * xddTr + ydTr * yddTr + zdTr * zddTr) / sqrt(pow(xdTr, 2) + pow(ydTr, 2) + pow(zdTr, 2));
 
         double phiTr = atan2(cos(gamTr) * psidTr, (gamdTr + cos(gamTr) * UAV.gravity / VaTr)); //pitch
-
 
         std::ofstream outfile;
         outfile.open("QuaterionRecent.txt", std::ofstream::app);
@@ -174,18 +171,15 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     //! End position to go back to launchish
     {
         std::cout<<"going back to launch"<<std::endl;
-        tTraj = Clock::now();                            // Current run time
-        tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+        auto tTraj = Clock::now();                            // Current run time
+        auto tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         tTrajN = tTrajTemp.count();
 
-        double xTr=0;
-        double yTr=0;
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
         }
-        double xdTr=0;
-        double ydTr=0;
+
         for (int nn = 1; nn <= nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
