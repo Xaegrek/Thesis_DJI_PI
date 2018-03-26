@@ -64,25 +64,26 @@ int main() {
      *
      !*/
 
-    /*
-    auto tTrajOrig   = Clock::now();                                // Initialization Time
 
+    auto tTrajOrig   = Clock::now();                                // Initialization Time
+    double xdTr=0;
+    double ydTr=0;
+    double zdTr=0;
+    double xTr=0;
+    double yTr=0;
+    double zTr=0;
     while (y<15) {
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
 
-        double xTr=0;
-        double yTr=0;
-        double zTr=0;
+
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
             zTr = zTr + cMan[nn] * pow(tTrajN, nn);
         }
-        double xdTr=0;
-        double ydTr=0;
-        double zdTr=0;
+
         for (int nn = 1; nn <= nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
@@ -106,6 +107,6 @@ int main() {
         std::cout << "psi " << psiTr <<" psid " <<psidTr << " gam " << gamTr << " gamd " << gamdTr <<std::endl;
         usleep(1e6); y++;
     }
-    */
+
     return 0;
 }

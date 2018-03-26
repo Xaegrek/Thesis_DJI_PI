@@ -113,6 +113,10 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     double xdTr=0;double ydTr=0;double zdTr=0;
     double xddTr=0;double yddTr=0;double zddTr=0;
 
+    std::cout<<"matrices"<<std::endl;
+    std::cout<<aMan<<std::endl;
+    std::cout<<bMan<<std::endl;
+    std::cout<<cMan<<std::endl;
     while (tTrajN < tTrajEnd) {
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
