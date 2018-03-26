@@ -167,7 +167,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         else if (fStyle) {
             auto xdTrTemp =float (xdTr-xdTrOld); auto ydTrTemp =float (ydTr-ydTrOld); auto zdTrTemp =float (zdTr-zdTrOld);
             auto psidTrTemp = float(psidTr-psidTrOld);
-            moveByPositionOffset(vehicle,xdTrTemp,ydTrTemp,zdTrTemp,psidTrTemp);
+            moveByVelocityRequest(vehicle,xdTrTemp,ydTrTemp,zdTrTemp,psidTrTemp);
             std::cout<<xdTrTemp<<ydTrTemp<<zdTrTemp<<psidTrTemp <<std::endl;
             xdTrOld = xdTr; ydTrOld = ydTr; zdTrOld = zdTr; psidTrOld = psidTr;
         }
@@ -621,7 +621,7 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
                 << ", " << yCmd << ", " << zCmd << ", "
                 << yawRateDesired
                 << "\n" << std::endl;
-        
+
         //! 3. Reset withinBoundsCounter if necessary
         if (outOfBounds > outOfControlBoundsTimeLimit) {
             withinBoundsCounter = 0;
