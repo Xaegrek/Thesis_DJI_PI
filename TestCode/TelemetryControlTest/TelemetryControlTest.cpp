@@ -102,10 +102,10 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
      *     auto curPos = startPos;
      !*/
 
-    auto tTrajOrig = Clock::now();                                // Initialization Time
+    auto tTrajOrig   = Clock::now();                                // Initialization Time
 
     std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
-    auto tTrajN = tTrajTempCounter.count();
+    auto tTrajNCheck = tTrajTempCounter.count();
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
     double xdTrOld = 0; double ydTrOld = 0; double zdTrOld = 0; double psidTrOld = 0; //used for offset in position tracking
 
@@ -117,10 +117,10 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     std::cout<<aMan[0]<<" "<<aMan[1]<<" "<<aMan[2]<<" "<<aMan[3]<<" "<<aMan[4]<<" "<<aMan[5]<<std::endl;
     std::cout<<" "<<bMan[0]<<" "<<bMan[1]<<" "<<bMan[2]<<" "<<bMan[3]<<" "<<bMan[4]<<" "<<bMan[5]<<std::endl;
     std::cout<<" "<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<" "<<cMan[3]<<" "<<cMan[4]<<" "<<cMan[5]<<std::endl;
-    while (tTrajN < tTrajEnd) {
+    while (tTrajNCheck < tTrajEnd) {
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
-         tTrajN = tTrajTemp.count();
+        auto tTrajN = tTrajTemp.count();
 
         // Getting state information
 
@@ -136,11 +136,13 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
 
-        for (int nn = 2; nn <= nDim; nn = nn + 1) {
-            xddTr = xddTr + nn * (nn - 1) * aMan[nn] * pow(tTrajN, nn - 2);
-            yddTr = yddTr + nn * (nn - 1) * bMan[nn] * pow(tTrajN, nn - 2);
-            zddTr = zddTr + nn * (nn - 1) * cMan[nn] * pow(tTrajN, nn - 2);
+        for (int nn = 2; nn <= nDim; nn = nn +1)
+        {
+            xddTr       = xddTr + nn * (nn-1) * aMan[nn] * pow(tTrajN,nn-2);
+            yddTr       = yddTr + nn * (nn-1) * bMan[nn] * pow(tTrajN,nn-2);
+            zddTr       = zddTr + nn * (nn-1) * cMan[nn] * pow(tTrajN,nn-2);
         }
+
         double psiTr = atan2(ydTr, xdTr);   //yaw
         double psidTr = (yddTr * xdTr - ydTr * xddTr) * pow(cos(psiTr), 2) / pow(xdTr, 2);
 
@@ -179,14 +181,14 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             std::cout<<xdTr<<ydTr<<zdTrTemp<<psidTr <<std::endl;
             xdTrOld = xdTr; ydTrOld = ydTr; zdTrOld = zdTr; psidTrOld = psidTr;
         }
-
+        tTrajNCheck = tTrajN;
     }
     //! End position to go back to launchish
     {
         std::cout<<"going back to launch"<<std::endl;
         auto tTraj = Clock::now();                            // Current run time
         auto tTrajTemp = tTraj - tTrajOrig;    // Time since begining
-        tTrajN = tTrajTemp.count();
+        auto tTrajN = tTrajTemp.count();
 
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);

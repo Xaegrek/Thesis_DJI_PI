@@ -93,6 +93,7 @@ int main() {
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
+
         double xddTr; double yddTr; double zddTr;
         for (int nn = 2; nn <= nDim; nn = nn +1)
         {
