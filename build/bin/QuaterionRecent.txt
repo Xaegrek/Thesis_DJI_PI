@@ -1,0 +1,75 @@
+test
+retest
+0.01
+
+ 
+ New Test
+
+ new test for position and attitude
+elapsed time was 1000
+
+ Position Trajectory Request
+time: 0.000261978
+coordinates 0 , 9.144 , 16.764
+
+ new test for position and attitude
+elapsed time was 9700
+
+ Position Trajectory Request
+time: 10.7522
+coordinates 0 , 18.288 , 33.528
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 21.8035
+coordinates 0 , 27.432 , 50.292
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 32.8613
+coordinates 0 , 36.576 , 67.056
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 43.9144
+coordinates 0 , 45.72 , 83.82
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 54.9679
+coordinates 0 , 54.864 , 100.584
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 66.0217
+coordinates 0 , 64.008 , 117.348
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 77.0676
+coordinates 0 , 73.152 , 134.112
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 88.1161
+coordinates 0 , 82.296 , 150.876
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 99.1691
+coordinates 0 , 91.44 , 167.64
+
+ new test for position and attitude
+
+ Requested Trajectory Position
+coordinates 0 , 100.584 , 5
+
+ new test for position and attitude
