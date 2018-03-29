@@ -489,7 +489,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         zOffsetRemaining = zOffsetDesired - (-localOffset.z);
 
         //! File Writing
-        std::ostringstream osstemp;
+/*        std::ostringstream osstemp;
         std::string quaternionWrite;
         osstemp << "Attitude Quaternion   (w,x,y,z); Position (x,y,z)       = " << broadcastQ.q0
                 << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
@@ -500,7 +500,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         outfile << "Attitude Quaternion   (w,x,y,z); Position (x,y,z)        = " << broadcastQ.q0
                 << ", " << broadcastQ.q1 << ", " << broadcastQ.q2 << ", "
                 << broadcastQ.q3 << ";" <<localOffset.x << ", "<< localOffset.y << ", "<<localOffset.z
-                << "\n" << std::endl;
+                << "\n" << std::endl;*/
 
         //! See if we need to modify the setpoint
         if (std::abs(xOffsetRemaining) < speedFactor)
