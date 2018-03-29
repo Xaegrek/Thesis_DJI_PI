@@ -79,6 +79,7 @@ main(int argc, char **argv) {
     double bMan[] = {9.1440, 1.0635e1, -2.7946, 2.0438e-1, -2.5241e-2, 4.3437e-3, -1.9276e-4};
     double cMan[] = {-1.6764e1, 2.1535, 2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, 3.1117e-5};
     double timeTrajEnd = 90;
+    int nDim = sizeof(aMan)/ sizeof(aMan[0]);
 
     //! Test Waypoint flight points - expandable for nx4
     std::vector<std::vector<float>> waypoints;
@@ -153,14 +154,14 @@ main(int argc, char **argv) {
             ctrlStyleThrust = false;
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0);
-            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, ctrlStyleThrust);
+            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, nDim, ctrlStyleThrust);
             monitoredLanding(vehicle);
             break;
         case 'F':
             ctrlStyleThrust = true;
             monitoredTakeoff(vehicle);
             moveByPositionOffset(vehicle, 0, 0, 5, 0);
-            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, ctrlStyleThrust);
+            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, nDim, ctrlStyleThrust);
             monitoredLanding(vehicle);
             break;
         case 'g':

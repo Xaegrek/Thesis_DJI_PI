@@ -85,9 +85,8 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 }
 
 bool
-trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
-    auto aManDim = aMan;
-    auto nDim = sizeof(aManDim)/ sizeof(aManDim[0]);
+trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, int nDim, bool fStyle, int timeout) {
+
 
     for (int nn = 0; nn <= nDim; nn = nn + 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     struct quadUAV {

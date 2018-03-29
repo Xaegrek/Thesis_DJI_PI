@@ -55,7 +55,7 @@ bool trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::ve
     in this code.  fStyle true runs for thrust and attitude, while false uses position control.
 !*/
 bool trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[],
-                                   double tTrajEnd, bool fStyle, int timeout = 1);
+                                   double tTrajEnd, int nDim, bool fStyle, int timeout = 1);
 
 
 /*! Monitored Takeoff
