@@ -159,6 +159,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         std::ofstream outfile;
         outfile.open("QuaterionRecent.txt", std::ofstream::app);
         outfile << "\n Position Trajectory Request"  << std::endl;
+        outfile << "time: " << tTrajN<<std::endl;
         outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< zTr << std::endl;
         outfile.close();
 
