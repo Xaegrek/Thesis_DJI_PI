@@ -1,0 +1,71 @@
+
+ 
+ New Test
+
+ new test for position and attitude
+elapsed time was 1000
+
+ Position Trajectory Request
+time: 0.000444428 nDim: 7
+coordinates 9.94644e+159 , 9.14873 , 16.765
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 11.055 nDim: 7
+coordinates 5.86114e+190 , 58.82 , 1.84527e+08
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 22.1089 nDim: 7
+coordinates 7.55795e+192 , -4451.84 , 2.37948e+10
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 33.1629 nDim: 7
+coordinates 1.35681e+194 , -112418 , 4.27168e+11
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 44.217 nDim: 7
+coordinates 1.09549e+195 , -902663 , 3.44894e+12
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 55.2711 nDim: 7
+coordinates 5.67211e+195 , -4.36661e+06 , 1.78576e+13
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 66.3255 nDim: 7
+coordinates 2.20712e+196 , -1.56414e+07 , 6.94872e+13
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 77.3748 nDim: 7
+coordinates 7.02944e+196 , -4.57843e+07 , 2.21309e+14
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 88.419 nDim: 7
+coordinates 1.93004e+197 , -1.15839e+08 , 6.07637e+14
+
+ new test for position and attitude
+
+ Position Trajectory Request
+time: 99.4646 nDim: 7
+coordinates 4.72734e+197 , -2.62499e+08 , 1.48832e+15
+
+ new test for position and attitude
+
+ Requested Trajectory Position
+coordinates 5.84614e+260 , -3.51097e+62 , 5
+
+ new test for position and attitude
