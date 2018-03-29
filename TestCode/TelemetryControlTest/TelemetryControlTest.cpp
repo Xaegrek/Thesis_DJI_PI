@@ -86,7 +86,7 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, bool fStyle, int timeout) {
-    int nDim = sizeof(aMan) / sizeof(aMan[0]);
+    auto nDim = sizeof(aMan)/ sizeof(aMan[0]);
 
     for (int nn = 0; nn <= nDim; nn = nn + 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     struct quadUAV {
@@ -136,8 +136,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
 
-        for (int nn = 2; nn <= nDim; nn = nn +1)
-        {
+        for (int nn = 2; nn <= nDim; nn = nn +1) {
             xddTr       = xddTr + nn * (nn-1) * aMan[nn] * pow(tTrajN,nn-2);
             yddTr       = yddTr + nn * (nn-1) * bMan[nn] * pow(tTrajN,nn-2);
             zddTr       = zddTr + nn * (nn-1) * cMan[nn] * pow(tTrajN,nn-2);
@@ -159,7 +158,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         std::ofstream outfile;
         outfile.open("QuaterionRecent.txt", std::ofstream::app);
         outfile << "\n Position Trajectory Request"  << std::endl;
-        outfile << "time: " << tTrajN<<std::endl;
+        outfile << "time: " << tTrajN<<" nDim: "<<nDim<<std::endl;
         outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< zTr << std::endl;
         outfile.close();
 

@@ -9,7 +9,6 @@
 // System Includes
 #include <chrono>
 #include <cmath>
-#include <math.h>
 #include <fstream>
 #include <sstream>
 #include <fstream>

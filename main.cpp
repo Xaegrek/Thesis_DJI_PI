@@ -4,7 +4,7 @@
 #include <sstream>
 #include <chrono>
 #include <unistd.h>
-#include <math.h>
+#include <cmath>
 #include <vector>
 
 typedef std::chrono::high_resolution_clock Clock;
@@ -76,11 +76,10 @@ int main() {
     std::cout<<aMan[0]<<" "<<aMan[1]<<" "<<aMan[2]<<" "<<aMan[3]<<" "<<aMan[4]<<" "<<aMan[5]<<std::endl;
     std::cout<<" "<<bMan[0]<<" "<<bMan[1]<<" "<<bMan[2]<<" "<<bMan[3]<<" "<<bMan[4]<<" "<<bMan[5]<<std::endl;
     std::cout<<" "<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<" "<<cMan[3]<<" "<<cMan[4]<<" "<<cMan[5]<<std::endl;
-    while (y<15) {
+    while (y<32.8613) {
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
-
 
         for (int nn = 0; nn <= nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
@@ -95,12 +94,12 @@ int main() {
         }
 
         double xddTr; double yddTr; double zddTr;
-        for (int nn = 2; nn <= nDim; nn = nn +1)
-        {
+        for (int nn = 2; nn <= nDim; nn = nn +1) {
             xddTr       = xddTr + nn * (nn-1) * aMan[nn] * pow(tTrajN,nn-2);
             yddTr       = yddTr + nn * (nn-1) * bMan[nn] * pow(tTrajN,nn-2);
             zddTr       = zddTr + nn * (nn-1) * cMan[nn] * pow(tTrajN,nn-2);
         }
+
         double psiTr    = atan2(ydTr,xdTr);
         double psidTr   = (yddTr * xdTr - ydTr * xddTr) / ( pow(xdTr,2) + pow(ydTr,2));
         double gamTr    = atan2(-zdTr,sqrt(pow(xdTr,2) + pow(ydTr,2)));
@@ -108,7 +107,7 @@ int main() {
                           (sqrt(pow(xdTr,2) + pow(ydTr,2)) * (pow(xdTr,2) + pow(ydTr,2) + pow(zdTr,2)));
 
 
-        std::cout << "x " << xTr << std::endl << "yd " << ydTr << std::endl << "zdd " << zddTr << std::endl;
+        std::cout << "x " << xTr << std::endl << "y " << yTr << std::endl << "z " << zTr << std::endl;
         std::cout << "psi " << psiTr <<" psid " <<psidTr << " gam " << gamTr << " gamd " << gamdTr <<std::endl;
         usleep(1e6); y++;
     }
