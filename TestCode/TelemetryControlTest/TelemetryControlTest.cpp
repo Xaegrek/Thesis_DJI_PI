@@ -191,12 +191,12 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         auto tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
 
-        for (int nn = 0; nn <= nDim; nn = nn + 1) {
+        for (int nn = 0; nn < nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
         }
 
-        for (int nn = 1; nn <= nDim; nn = nn + 1) {
+        for (int nn = 1; nn < nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
         }
