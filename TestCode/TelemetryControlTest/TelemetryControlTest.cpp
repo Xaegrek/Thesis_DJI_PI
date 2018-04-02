@@ -193,7 +193,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
         std::cout<<"going back to launch"<<std::endl;
         auto tTraj = Clock::now();                            // Current run time
-        auto tTrajTemp = tTraj - tTrajOrig;    // Time since begining
+        std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
 
         for (int nn = 0; nn < nDim; nn = nn + 1) {
