@@ -72,7 +72,7 @@ int main() {
     double xTr=0;
     double yTr=0;
     double zTr=0;
-    std::cout<<"matrices"<<std::endl;
+    std::cout<<"matrices : nDim: "<< nDim <<std::endl;
     std::cout<<aMan[0]<<" "<<aMan[1]<<" "<<aMan[2]<<" "<<aMan[3]<<" "<<aMan[4]<<" "<<aMan[5]<<std::endl;
     std::cout<<" "<<bMan[0]<<" "<<bMan[1]<<" "<<bMan[2]<<" "<<bMan[3]<<" "<<bMan[4]<<" "<<bMan[5]<<std::endl;
     std::cout<<" "<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<" "<<cMan[3]<<" "<<cMan[4]<<" "<<cMan[5]<<std::endl;
@@ -107,6 +107,7 @@ int main() {
                           (sqrt(pow(xdTr,2) + pow(ydTr,2)) * (pow(xdTr,2) + pow(ydTr,2) + pow(zdTr,2)));
 
 
+        std::cout << "time " << tTrajN << std::endl;
         std::cout << "x " << xTr << std::endl << "y " << yTr << std::endl << "z " << zTr << std::endl;
         std::cout << "psi " << psiTr <<" psid " <<psidTr << " gam " << gamTr << " gamd " << gamdTr <<std::endl;
         usleep(1e6); y++;
