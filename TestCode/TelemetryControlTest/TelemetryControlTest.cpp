@@ -124,20 +124,20 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
         // Getting state information
 
-        for (int nn = 0; nn <= nDim; nn = nn + 1) {
+        for (int nn = 0; nn < nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
             zTr = zTr + cMan[nn] * pow(tTrajN, nn);
             std::cout<<xTr<<" x:time "<<tTrajN<< " ,time power "<< pow(tTrajN, nn)<< " ,nn "<<nn<<" ,amannn "<<aMan[nn]<<std::endl;
         }
 
-        for (int nn = 1; nn <= nDim; nn = nn + 1) {
+        for (int nn = 1; nn < nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
 
-        for (int nn = 2; nn <= nDim; nn = nn +1) {
+        for (int nn = 2; nn < nDim; nn = nn +1) {
             xddTr       = xddTr + nn * (nn-1) * aMan[nn] * pow(tTrajN,nn-2);
             yddTr       = yddTr + nn * (nn-1) * bMan[nn] * pow(tTrajN,nn-2);
             zddTr       = zddTr + nn * (nn-1) * cMan[nn] * pow(tTrajN,nn-2);

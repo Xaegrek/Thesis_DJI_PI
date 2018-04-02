@@ -81,7 +81,7 @@ int main() {
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
 
-        for (int nn = 0; nn <= nDim; nn = nn + 1) {
+        for (int nn = 0; nn < nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
             zTr = zTr + cMan[nn] * pow(tTrajN, nn);
@@ -89,14 +89,14 @@ int main() {
 
         }
 
-        for (int nn = 1; nn <= nDim; nn = nn + 1) {
+        for (int nn = 1; nn < nDim; nn = nn + 1) {
             xdTr = xdTr + nn * aMan[nn] * pow(tTrajN, nn - 1);
             ydTr = ydTr + nn * bMan[nn] * pow(tTrajN, nn - 1);
             zdTr = zdTr + nn * cMan[nn] * pow(tTrajN, nn - 1);
         }
 
         double xddTr; double yddTr; double zddTr;
-        for (int nn = 2; nn <= nDim; nn = nn +1) {
+        for (int nn = 2; nn < nDim; nn = nn +1) {
             xddTr       = xddTr + nn * (nn-1) * aMan[nn] * pow(tTrajN,nn-2);
             yddTr       = yddTr + nn * (nn-1) * bMan[nn] * pow(tTrajN,nn-2);
             zddTr       = zddTr + nn * (nn-1) * cMan[nn] * pow(tTrajN,nn-2);
