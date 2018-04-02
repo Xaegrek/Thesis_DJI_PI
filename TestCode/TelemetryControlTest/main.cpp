@@ -77,7 +77,7 @@ main(int argc, char **argv) {
     bool ctrlStyleThrust;
     double aMan[] = {1e-2, 3.9691e-1, -4.7873e-1, 2.8244e-3, -2.2783e-4, -1.2762e-4, 8.7194e-6};
     double bMan[] = {9.1440, 1.0635e-1, -2.7946, 2.0438e-1, -2.5241e-2, 4.3437e-4, -1.9276e-6};
-    double cMan[] = {-1.6764e1, -2.1535e-1, 2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, -3.1117e-6};
+    double cMan[] = {-1.6764e1, 2.1535e-1, -2.0075e-1, -2.4922e-2, 1.5728e-3, -4.6684e-4, -3.1117e-6};
     double timeTrajEnd = 90;
     int     nDim = sizeof(aMan)/ sizeof(aMan[0]);
 
