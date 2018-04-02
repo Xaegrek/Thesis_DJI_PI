@@ -89,6 +89,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
 
     for (int nn = 0; nn <= nDim; nn = nn + 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
+    std::cout<<cMan<<std::endl;
     struct quadUAV {
         double mass = 2.462; // kg
         double gravity = 9.81; // m/s/s
@@ -108,8 +109,6 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     auto tTrajNCheck = tTrajTempCounter.count();
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
     double xdTrOld = 0; double ydTrOld = 0; double zdTrOld = 0; double psidTrOld = 0; //used for offset in position tracking
-
-
 
     std::cout<<"matrices"<<std::endl;
     std::cout<<aMan[0]<<" "<<aMan[1]<<" "<<aMan[2]<<" "<<aMan[3]<<" "<<aMan[4]<<" "<<aMan[5]<<std::endl;
