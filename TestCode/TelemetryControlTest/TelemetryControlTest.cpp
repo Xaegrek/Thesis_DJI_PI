@@ -109,15 +109,17 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     double xTrOld = 0; double yTrOld = 0; double zTrOld = 0; double psiTrOld = 0; //used for offset in position tracking
     double xdTrOld = 0; double ydTrOld = 0; double zdTrOld = 0; double psidTrOld = 0; //used for offset in position tracking
 
-    double xTr=0;double yTr=0; double zTr=0;
-    double xdTr=0;double ydTr=0;double zdTr=0;
-    double xddTr=0;double yddTr=0;double zddTr=0;
+
 
     std::cout<<"matrices"<<std::endl;
     std::cout<<aMan[0]<<" "<<aMan[1]<<" "<<aMan[2]<<" "<<aMan[3]<<" "<<aMan[4]<<" "<<aMan[5]<<std::endl;
     std::cout<<" "<<bMan[0]<<" "<<bMan[1]<<" "<<bMan[2]<<" "<<bMan[3]<<" "<<bMan[4]<<" "<<bMan[5]<<std::endl;
     std::cout<<" "<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<" "<<cMan[3]<<" "<<cMan[4]<<" "<<cMan[5]<<std::endl;
     while (tTrajNCheck < tTrajEnd) {
+        double xTr=0;double yTr=0; double zTr=0;
+        double xdTr=0;double ydTr=0;double zdTr=0;
+        double xddTr=0;double yddTr=0;double zddTr=0;
+
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
@@ -186,6 +188,10 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     }
     //! End position to go back to launchish
     {
+        double xTr=0;double yTr=0; double zTr=0;
+        double xdTr=0;double ydTr=0;double zdTr=0;
+        double xddTr=0;double yddTr=0;double zddTr=0;
+        
         std::cout<<"going back to launch"<<std::endl;
         auto tTraj = Clock::now();                            // Current run time
         auto tTrajTemp = tTraj - tTrajOrig;    // Time since begining
