@@ -215,7 +215,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< 5 << std::endl;
         outfile.close();
 
-        moveByPositionOffset(vehicle,float(-xTr),float(-yTr),5,float(-psiTr));
+        //moveByPositionOffset(vehicle,float(-xTr),float(-yTr),5,float(-psiTr));
         std::cout<<xTr<<" , "<<yTr<<" , "<<5<<" , "<<psiTr <<std::endl;
 
     }

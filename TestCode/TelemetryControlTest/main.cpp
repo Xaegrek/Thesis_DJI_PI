@@ -65,6 +65,9 @@ main(int argc, char **argv) {
             << "| [F] Takeoff + polynomial follow (velocity) + landing at 0,0     |"
             << std::endl;
     std::cout
+            << "| [t] Takeoff + polynomial follow (bothish) + landing at 0,0     |"
+            << std::endl;
+    std::cout
             << "| [g] Takeoff + waypoint-style offset pathing + landing           |"
             << std::endl;
     std::cout
@@ -164,6 +167,14 @@ main(int argc, char **argv) {
             trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, nDim, ctrlStyleThrust);
             monitoredLanding(vehicle);
             break;
+        case 't':
+            ctrlStyleThrust = true;
+            monitoredTakeoff(vehicle);
+            moveByPositionOffset(vehicle, 0, 0, 5, 0);
+            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, nDim, ctrlStyleThrust);
+            ctrlStyleThrust = true;
+            trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, 15, nDim, ctrlStyleThrust);
+            monitoredLanding(vehicle);
         case 'g':
             for (nn = 0; nn < waypoints.size(); nn = nn + 1) {
                 xOf = waypoints[nn][0];
