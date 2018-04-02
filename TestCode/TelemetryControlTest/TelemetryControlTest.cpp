@@ -623,7 +623,7 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
     }
     xCmd = xVelocityDesired; yCmd = yVelocityDesired; zCmd = zVelocityDesired;
 
-    //! Main closed-loop receding setpoint position control
+/*    //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec) {
 
         vehicle->control->velocityAndYawRateCtrl(xCmd, yCmd, zCmd,
@@ -681,7 +681,21 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
                     << "Error unsubscribing; please restart the drone/FC to get back "
                             "to a clean state.\n";
         }
-    }
+    }*/
+
+
+    vehicle->control->velocityAndYawRateCtrl(xCmd, yCmd, zCmd,
+                                             yawRateDesired);
+
+    usleep(cycleTimeInMs * 1000);
+    elapsedTimeInMs += cycleTimeInMs;
+
+    //! File Writing
+
+    outfile << "Command Request Velocity and Yaw Rate = " << xCmd
+            << ", " << yCmd << ", " << zCmd << ", "
+            << yawRateDesired
+            << "\n" << std::endl;
     outfile << "elapsed time was " << elapsedTimeInMs << std::endl;
     outfile.close();
     return ACK::SUCCESS;
