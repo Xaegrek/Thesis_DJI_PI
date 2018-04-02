@@ -88,7 +88,7 @@ bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, int nDim, bool fStyle, int timeout) {
 
 
-    for (int nn = 0; nn <= nDim; nn = nn + 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
+    for (int nn = nDim-1; nn >= 0; nn = nn - 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     std::cout<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<std::endl;
     struct quadUAV {
         double mass = 2.462; // kg
