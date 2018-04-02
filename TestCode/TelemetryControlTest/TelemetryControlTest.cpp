@@ -191,7 +191,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         double xTr=0;double yTr=0; double zTr=0;
         double xdTr=0;double ydTr=0;double zdTr=0;
         double xddTr=0;double yddTr=0;double zddTr=0;
-        
+
         std::cout<<"going back to launch"<<std::endl;
         auto tTraj = Clock::now();                            // Current run time
         auto tTrajTemp = tTraj - tTrajOrig;    // Time since begining
@@ -200,6 +200,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         for (int nn = 0; nn < nDim; nn = nn + 1) {
             xTr = xTr + aMan[nn] * pow(tTrajN, nn);
             yTr = yTr + bMan[nn] * pow(tTrajN, nn);
+            std::cout<<xTr<<" x:time "<<tTrajN<< " ,time power "<< pow(tTrajN, nn)<< " ,nn "<<nn<<" ,amannn "<<aMan[nn]<<std::endl;
         }
 
         for (int nn = 1; nn < nDim; nn = nn + 1) {
