@@ -172,14 +172,14 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
             auto psiTrTemp = float(psiTr-psiTrOld);
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
-            std::cout<<xTrTemp<<yTrTemp<<zTrTemp<<psiTrTemp <<std::endl;
+            std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
         }
         else if (fStyle) {
             auto xdTrTemp =float (xdTr-xdTrOld); auto ydTrTemp =float (ydTr-ydTrOld); auto zdTrTemp =float (zdTr-zdTrOld);
             auto psidTrTemp = float(psidTr-psidTrOld);
             moveByVelocityRequest(vehicle,xdTr,ydTr,zdTr,psidTrTemp);
-            std::cout<<xdTr<<ydTr<<zdTrTemp<<psidTr <<std::endl;
+            std::cout<<xdTr<< " , "<<ydTr<< " , "<<zdTrTemp<< " , "<<psidTr <<std::endl;
             xdTrOld = xdTr; ydTrOld = ydTr; zdTrOld = zdTr; psidTrOld = psidTr;
         }
         tTrajNCheck = tTrajN;
