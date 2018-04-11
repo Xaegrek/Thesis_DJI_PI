@@ -3,6 +3,11 @@
 
 #include <cstdio>
 #include "TelemetryControlTest.hpp"
+#include <memory>
+
+#include "../common/src/utilities/logging/logger.hpp"
+
+using namespace librav;
 
 using namespace DJI::OSDK;
 using namespace DJI::OSDK::Telemetry;
@@ -87,6 +92,13 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, int nDim, bool fStyle, int timeout) {
 
+    GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('Data log for controller call');
+    GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('x_des','y_des','z_des','yaw_des',
+                                                                                    'x_act','y_act','z_act','yaw_act',
+                                                                                    'time','q0_act','q1_act','q2_act','q3_act');
+    Telemetry::GlobalPosition logCurrentGPS;
+    Telemetry::Vector3f logLocalOffset;
+    Telemetry::Quaternion logQ;
 
     for (int nn = nDim-1; nn >= 0; nn = nn - 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     std::cout<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<std::endl;
@@ -172,6 +184,19 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         if (!fStyle) {
             auto xTrTemp =float (xTr-xTrOld); auto yTrTemp =float (yTr-yTrOld); auto zTrTemp =float (zTr-zTrOld);
             auto psiTrTemp = float(psiTr-psiTrOld);
+
+            // logging
+            logCurrentGPS = vehicle->broadcast->getGlobalPosition();
+            localOffsetFromGpsOffset(vehicle, logLocalOffset,
+                                     static_cast<void*>(&logCurrentGPS),
+                                     static_cast<void*>(&logCurrentGPS));
+            logQ = vehicle->broadcast->getQuaternion();
+
+            GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData(xTr,yTr,zTr,psiTr,
+                                        logLocalOffset.x,logLocalOffset.y,logLocalOffset.z,'yaw_act',
+                                        tTrajN,logQ.q0,logQ.q1,logQ.q2,logQ.q3);
+
+            // flight request
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
@@ -191,7 +216,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         double xdTr=0;double ydTr=0;double zdTr=0;
         double xddTr=0;double yddTr=0;double zddTr=0;
 
-        std::cout<<"going back to launch"<<std::endl;
+        //std::cout<<"going back to launch"<<std::endl;
         auto tTraj = Clock::now();                            // Current run time
         std::chrono::duration<double> tTrajTemp = tTraj - tTrajOrig;    // Time since begining
         auto tTrajN = tTrajTemp.count();
@@ -208,12 +233,6 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
         }
         double psiTr = atan2(ydTr, xdTr);   //yaw
 
-        //! file write position request
-        std::ofstream outfile;
-        outfile.open("QuaterionRecent.txt", std::ofstream::app);
-        outfile << "\n Requested Trajectory Position"  << std::endl;
-        outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< 5 << std::endl;
-        outfile.close();
 
         //moveByPositionOffset(vehicle,float(-xTr),float(-yTr),5,float(-psiTr));
         std::cout<<xTr<<" , "<<yTr<<" , "<<5<<" , "<<psiTr <<std::endl;
