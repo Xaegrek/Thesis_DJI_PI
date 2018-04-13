@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="spdlog"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\modules\;CMake Files\lcmtypes\;CMake Files\lcmtypes\c\;CMake Files\lcmtypes\c\lcmtypes\;CMake Files\lcmtypes\cpp\;CMake Files\lcmtypes\cpp\lcmtypes\;CMake Files\lcmtypes\cpp\lcmtypes\acel_lcm_msgs\;CMake Files\examples\;CMake Files\utilities\;CMake Files\libraries\;CMake Files\libraries\googletest\;CMake Files\libraries\googletest\googletest\;CMake Files\libraries\googletest\googletest\cmake\;CMake Files\libraries\spdlog\;CMake Files\libraries\ascent\;CMake Files\libraries\dubins_curves\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/libraries/spdlog"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/libraries/spdlog/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/libraries/spdlog/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/libraries/spdlog/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/libraries/spdlog/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/cmake/lcmtypes.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/cmake/pods.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/cmake/modules/FindLCM.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/cmake/modules/FindEigen3.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/cmake/modules/FindLCM.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/cmake/modules/FindEigen3.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/lcmtypes/c/lcmtypes/acel_lcm_msgs_example_t.h">
+			<Option virtualFolder="CMake Files\lcmtypes\c\lcmtypes\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/lcmtypes/c/lcmtypes/acel_lcm_msgs.h">
+			<Option virtualFolder="CMake Files\lcmtypes\c\lcmtypes\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/lcmtypes/cpp/lcmtypes/acel_lcm_msgs.hpp">
+			<Option virtualFolder="CMake Files\lcmtypes\cpp\lcmtypes\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/lcmtypes/cpp/lcmtypes/acel_lcm_msgs/example_t.hpp">
+			<Option virtualFolder="CMake Files\lcmtypes\cpp\lcmtypes\acel_lcm_msgs\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/examples/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\examples\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/examples/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\examples\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/utilities/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\utilities\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/utilities/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\utilities\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\libraries\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/spdlog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/spdlog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/spdlog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/ascent/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\ascent\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/ascent/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\ascent\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/ascent/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\ascent\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/dubins_curves/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\dubins_curves\"/>
+		</Unit>
+		<Unit filename="/home/xaegrek/Documents/acel-base-master/src/libraries/dubins_curves/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libraries\dubins_curves\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

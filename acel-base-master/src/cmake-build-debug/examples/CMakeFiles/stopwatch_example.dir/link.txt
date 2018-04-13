@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++14 -g  -rdynamic CMakeFiles/stopwatch_example.dir/stopwatch_example.cpp.o  -o ../bin/stopwatch_example  -L/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/lib  -L/usr/local/lib -Wl,-rpath,/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/lib:/usr/local/lib ../lib/libutilities.a -lpthread 

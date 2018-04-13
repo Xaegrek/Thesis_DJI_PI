@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: lcmtypes_acel_lcm_msgs
+Description: LCM types for acel_lcm_msgs
+Requires:  lcm
+Version: 0.0.0
+Libs: -L${libdir}  -llcmtypes_acel_lcm_msgs
+Cflags: -I${includedir} 

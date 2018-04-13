@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libutilities.a  CMakeFiles/utilities.dir/logging/logger.cpp.o
+/usr/bin/ranlib ../lib/libutilities.a

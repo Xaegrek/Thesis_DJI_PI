@@ -3,9 +3,6 @@
 
 #include <cstdio>
 #include "TelemetryControlTest.hpp"
-#include <memory>
-
-#include "../common/src/utilities/logging/logger.hpp"
 
 using namespace librav;
 
@@ -92,10 +89,26 @@ trajectoryWaypointOffsetControllerTest(DJI::OSDK::Vehicle *vehicle, std::vector<
 bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, int nDim, bool fStyle, int timeout) {
 
-    GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('Data log for controller call');
-    GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('x_des','y_des','z_des','yaw_des',
-                                                                                    'x_act','y_act','z_act','yaw_act',
-                                                                                    'time','q0_act','q1_act','q2_act','q3_act');
+    //GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData("Data log for controller call");
+   // GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('x_des','y_des','z_des','yaw_des',
+   //                                                                                 'x_act','y_act','z_act','yaw_act',
+   //                                                                                 'time','q0_act','q1_act','q2_act','q3_act');
+    CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
+    djilog_logger.AddItemNameToEntryHead("x_des");
+    djilog_logger.AddItemNameToEntryHead("y_des");
+    djilog_logger.AddItemNameToEntryHead("z_des");
+    djilog_logger.AddItemNameToEntryHead("yaw_des");
+    djilog_logger.AddItemNameToEntryHead("x_act");
+    djilog_logger.AddItemNameToEntryHead("y_act");
+    djilog_logger.AddItemNameToEntryHead("z_act");
+    djilog_logger.AddItemNameToEntryHead("yaw_act");
+    djilog_logger.AddItemNameToEntryHead("time");
+    djilog_logger.AddItemNameToEntryHead("q0_act");
+    djilog_logger.AddItemNameToEntryHead("q1_act");
+    djilog_logger.AddItemNameToEntryHead("q2_act");
+    djilog_logger.AddItemNameToEntryHead("q3_act");
+    djilog_logger.PassEntryHeaderToLogger();
+
     Telemetry::GlobalPosition logCurrentGPS;
     Telemetry::Vector3f logLocalOffset;
     Telemetry::Quaternion logQ;
@@ -192,10 +205,24 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
                                      static_cast<void*>(&logCurrentGPS));
             logQ = vehicle->broadcast->getQuaternion();
 
-            GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData(xTr,yTr,zTr,psiTr,
-                                        logLocalOffset.x,logLocalOffset.y,logLocalOffset.z,'yaw_act',
-                                        tTrajN,logQ.q0,logQ.q1,logQ.q2,logQ.q3);
-
+            //GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData(xTr,yTr,zTr,psiTr,
+            //                            logLocalOffset.x,logLocalOffset.y,logLocalOffset.z,
+            //                            tTrajN,logQ.q0,logQ.q1,logQ.q2,logQ.q3);
+            djilog_logger.AddItemDataToEntry("x_des",xTr);
+            djilog_logger.AddItemDataToEntry("y_des",yTr);
+            djilog_logger.AddItemDataToEntry("z_des",zTr);
+            djilog_logger.AddItemDataToEntry("yaw_des",psiTr);
+            djilog_logger.AddItemDataToEntry("x_act",logLocalOffset.x);
+            djilog_logger.AddItemDataToEntry("y_act",logLocalOffset.y);
+            djilog_logger.AddItemDataToEntry("z_act",logLocalOffset.z);
+            djilog_logger.AddItemDataToEntry("yaw_act",0);
+            djilog_logger.AddItemDataToEntry("time",tTrajN);
+            djilog_logger.AddItemDataToEntry("q0_act",logQ.q0);
+            djilog_logger.AddItemDataToEntry("q1_act",logQ.q1);
+            djilog_logger.AddItemDataToEntry("q2_act",logQ.q2);
+            djilog_logger.AddItemDataToEntry("q3_act",logQ.q3);
+            djilog_logger.PassEntryDataToLogger();
+            
             // flight request
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;

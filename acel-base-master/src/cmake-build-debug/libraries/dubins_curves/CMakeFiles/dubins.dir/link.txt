@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libdubins.a  CMakeFiles/dubins.dir/src/dubins.c.o
+/usr/bin/ranlib ../../lib/libdubins.a

@@ -1,0 +1,1 @@
+/usr/bin/cc -g  -rdynamic CMakeFiles/demo_app.dir/examples/demo.c.o  -o ../../bin/demo_app  -L/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/lib  -L/usr/local/lib -Wl,-rpath,/home/xaegrek/Documents/acel-base-master/src/cmake-build-debug/lib:/usr/local/lib ../../lib/libdubins.a -lm 

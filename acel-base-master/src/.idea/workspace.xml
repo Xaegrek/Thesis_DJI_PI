@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="acel_lcm_msgs" targetName="lcm_subscriber_cpp" />
+      <config projectName="acel_lcm_msgs" targetName="stopwatch_example" />
+      <config projectName="acel_lcm_msgs" targetName="lcmtypes_acel_lcm_msgs_jar" />
+      <config projectName="acel_lcm_msgs" targetName="utilities" />
+      <config projectName="acel_lcm_msgs" targetName="gtest_main" />
+      <config projectName="acel_lcm_msgs" targetName="lcmgen_cpp" />
+      <config projectName="acel_lcm_msgs" targetName="logger_example" />
+      <config projectName="acel_lcm_msgs" targetName="lcmtypes_acel_lcm_msgs" />
+      <config projectName="acel_lcm_msgs" targetName="lcmgen_python" />
+      <config projectName="acel_lcm_msgs" targetName="lcmgen_c" />
+      <config projectName="acel_lcm_msgs" targetName="dubins" />
+      <config projectName="acel_lcm_msgs" targetName="demo_app" />
+      <config projectName="acel_lcm_msgs" targetName="gtest" />
+      <config projectName="acel_lcm_msgs" targetName="4gnnx7Dpx8nyAPjbo84ukIh6X6SCdz4i" />
+      <config projectName="acel_lcm_msgs" targetName="lcmgen_java" />
+      <config projectName="acel_lcm_msgs" targetName="lcm_publisher_cpp" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b6cf1f3d-45b6-4026-ba4d-b059e5647675" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="114" />
+    <option name="y" value="104" />
+    <option name="width" value="1610" />
+    <option name="height" value="940" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="acel_lcm_msgs" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.lcm_publisher_cpp">
+    <configuration name="4gnnx7Dpx8nyAPjbo84ukIh6X6SCdz4i" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="4gnnx7Dpx8nyAPjbo84ukIh6X6SCdz4i" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+    </configuration>
+    <configuration name="demo_app" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="demo_app" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="acel_lcm_msgs" RUN_TARGET_NAME="demo_app">
+      <envs />
+    </configuration>
+    <configuration name="dubins" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="dubins" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="gtest" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="lcm_publisher_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcm_publisher_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="acel_lcm_msgs" RUN_TARGET_NAME="lcm_publisher_cpp">
+      <envs />
+    </configuration>
+    <configuration name="lcm_subscriber_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcm_subscriber_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="acel_lcm_msgs" RUN_TARGET_NAME="lcm_subscriber_cpp">
+      <envs />
+    </configuration>
+    <configuration name="lcmgen_c" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcmgen_c" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="lcmgen_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcmgen_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="lcmgen_java" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcmgen_java" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="lcmgen_python" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcmgen_python" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="lcmtypes_acel_lcm_msgs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcmtypes_acel_lcm_msgs" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="lcmtypes_acel_lcm_msgs_jar" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="lcmtypes_acel_lcm_msgs_jar" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="logger_example" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="logger_example" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="acel_lcm_msgs" RUN_TARGET_NAME="logger_example">
+      <envs />
+    </configuration>
+    <configuration name="stopwatch_example" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="stopwatch_example" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="acel_lcm_msgs" RUN_TARGET_NAME="stopwatch_example">
+      <envs />
+    </configuration>
+    <configuration name="utilities" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acel_lcm_msgs" TARGET_NAME="utilities" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <list size="17">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.4gnnx7Dpx8nyAPjbo84ukIh6X6SCdz4i" />
+      <item index="2" class="java.lang.String" itemvalue="Application.lcmgen_c" />
+      <item index="3" class="java.lang.String" itemvalue="Application.lcmgen_cpp" />
+      <item index="4" class="java.lang.String" itemvalue="Application.lcmgen_java" />
+      <item index="5" class="java.lang.String" itemvalue="Application.lcmgen_python" />
+      <item index="6" class="java.lang.String" itemvalue="Application.lcmtypes_acel_lcm_msgs" />
+      <item index="7" class="java.lang.String" itemvalue="Application.lcmtypes_acel_lcm_msgs_jar" />
+      <item index="8" class="java.lang.String" itemvalue="Application.lcm_publisher_cpp" />
+      <item index="9" class="java.lang.String" itemvalue="Application.lcm_subscriber_cpp" />
+      <item index="10" class="java.lang.String" itemvalue="Application.logger_example" />
+      <item index="11" class="java.lang.String" itemvalue="Application.stopwatch_example" />
+      <item index="12" class="java.lang.String" itemvalue="Application.demo_app" />
+      <item index="13" class="java.lang.String" itemvalue="Application.dubins" />
+      <item index="14" class="java.lang.String" itemvalue="Application.gtest" />
+      <item index="15" class="java.lang.String" itemvalue="Application.gtest_main" />
+      <item index="16" class="java.lang.String" itemvalue="Application.utilities" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6cf1f3d-45b6-4026-ba4d-b059e5647675" name="Default" comment="" />
+      <created>1523468351011</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1523468351011</updated>
+      <workItem from="1523468352366" duration="2175000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2175000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="114" y="104" width="1610" height="940" extended-state="0" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28757763" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

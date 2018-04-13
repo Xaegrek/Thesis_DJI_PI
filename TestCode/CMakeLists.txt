@@ -11,7 +11,7 @@ set(DJIOSDK_PATCH_VERSION 0)
 set(DJIOSDK_VERSION
         ${DJIOSDK_MAJOR_VERSION}.${DJIOSDK_MINOR_VERSION}.${DJIOSDK_PATCH_VERSION})
 
-add_subdirectory(TelemetryControlTest)
 add_subdirectory(flight-controlOSDK)
 add_subdirectory(loggingOSDK)
 add_subdirectory(telemetryOSDK)
+add_subdirectory(TelemetryControlTest)
