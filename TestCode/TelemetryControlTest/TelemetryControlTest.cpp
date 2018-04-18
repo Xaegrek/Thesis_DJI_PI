@@ -110,10 +110,12 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     djilog_logger.PassEntryHeaderToLogger();
 
     Telemetry::GlobalPosition logCurrentGPS;
-    Telemetry::GlobalPosition logCurrentGPSsec;
+    Telemetry::GlobalPosition logOriginGPS;
     Telemetry::Vector3f logLocalOffset;
     Telemetry::Quaternion logQ;
 
+    logCurrentGPS = vehicle->broadcast->getGlobalPosition();
+    logOriginGPS = logCurrentGPS;
     for (int nn = nDim-1; nn >= 0; nn = nn - 1){ if (cMan[0]<0) {cMan[nn]=-cMan[nn];} }
     std::cout<<cMan[0]<<" "<<cMan[1]<<" "<<cMan[2]<<std::endl;
     struct quadUAV {
@@ -201,10 +203,9 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
             // logging
             logCurrentGPS = vehicle->broadcast->getGlobalPosition();
-            logCurrentGPSsec = logCurrentGPS;
             localOffsetFromGpsOffset(vehicle, logLocalOffset,
                                      static_cast<void*>(&logCurrentGPS),
-                                     static_cast<void*>(&logCurrentGPSsec));
+                                     static_cast<void*>(&logOriginGPS));
             logQ = vehicle->broadcast->getQuaternion();
 
             //GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData(xTr,yTr,zTr,psiTr,
