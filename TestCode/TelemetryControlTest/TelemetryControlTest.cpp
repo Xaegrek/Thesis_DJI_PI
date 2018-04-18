@@ -228,7 +228,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             djilog_logger.AddItemDataToEntry("q2_act",logQ.q2);
             djilog_logger.AddItemDataToEntry("q3_act",logQ.q3);
             djilog_logger.PassEntryDataToLogger();
-;
+
             // flight request
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
