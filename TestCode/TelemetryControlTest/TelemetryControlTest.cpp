@@ -562,7 +562,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         djilog_logger.AddItemDataToEntry("x_act",localOffset.x);
         djilog_logger.AddItemDataToEntry("y_act",localOffset.y);
         djilog_logger.AddItemDataToEntry("z_act",localOffset.z);
-        djilog_logger.AddItemDataToEntry("yaw_act",0);
+        djilog_logger.AddItemDataToEntry("yaw_act",yawInRad);
         djilog_logger.AddItemDataToEntry("time",tTrajN);
         djilog_logger.AddItemDataToEntry("q0_act",broadcastQ.q0);
         djilog_logger.AddItemDataToEntry("q1_act",broadcastQ.q1);
