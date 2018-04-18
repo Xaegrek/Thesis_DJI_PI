@@ -382,6 +382,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     int withinControlBoundsTimeReqmt = 50 * cycleTimeInMs; // 50 cycles
     int pkgIndex;
 
+/*
     CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
 
     djilog_logger.AddItemNameToEntryHead("Outermost_loop");
@@ -401,6 +402,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     djilog_logger.PassEntryHeaderToLogger();
 
 //    auto tTrajOrig   = Clock::now();                                // Initialization Time
+*/
 
 
     //@todo: remove this once the getErrorCode function signature changes
@@ -551,7 +553,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
-        //std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
+/*        //std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
         //auto tTrajN = tTrajTempCounter.count();
         auto tTrajN = elapsedTimeInMs;
         djilog_logger.AddItemDataToEntry("Outermost_loop",0);
@@ -568,7 +570,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         djilog_logger.AddItemDataToEntry("q1_act",broadcastQ.q1);
         djilog_logger.AddItemDataToEntry("q2_act",broadcastQ.q2);
         djilog_logger.AddItemDataToEntry("q3_act",broadcastQ.q3);
-        djilog_logger.PassEntryDataToLogger();
+        djilog_logger.PassEntryDataToLogger();*/
 
 
         usleep(cycleTimeInMs * 1000);
