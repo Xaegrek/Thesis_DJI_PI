@@ -94,6 +94,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
    //                                                                                 'x_act','y_act','z_act','yaw_act',
    //                                                                                 'time','q0_act','q1_act','q2_act','q3_act');
     CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
+    djilog_logger.AddItemNameToEntryHead("Outermost_loop");
     djilog_logger.AddItemNameToEntryHead("x_des");
     djilog_logger.AddItemNameToEntryHead("y_des");
     djilog_logger.AddItemNameToEntryHead("z_des");
@@ -382,6 +383,23 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     int pkgIndex;
 
     CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
+    /*
+    djilog_logger.AddItemNameToEntryHead("Outermost_loop");
+    djilog_logger.AddItemNameToEntryHead("x_des");
+    djilog_logger.AddItemNameToEntryHead("y_des");
+    djilog_logger.AddItemNameToEntryHead("z_des");
+    djilog_logger.AddItemNameToEntryHead("yaw_des");
+    djilog_logger.AddItemNameToEntryHead("x_act");
+    djilog_logger.AddItemNameToEntryHead("y_act");
+    djilog_logger.AddItemNameToEntryHead("z_act");
+    djilog_logger.AddItemNameToEntryHead("yaw_act");
+    djilog_logger.AddItemNameToEntryHead("time");
+    djilog_logger.AddItemNameToEntryHead("q0_act");
+    djilog_logger.AddItemNameToEntryHead("q1_act");
+    djilog_logger.AddItemNameToEntryHead("q2_act");
+    djilog_logger.AddItemNameToEntryHead("q3_act");
+    djilog_logger.PassEntryHeaderToLogger();
+     */
     auto tTrajOrig   = Clock::now();                                // Initialization Time
 
 
