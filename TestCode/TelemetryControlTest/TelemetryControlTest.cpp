@@ -383,7 +383,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     int pkgIndex;
 
     CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
-    /*
+
     djilog_logger.AddItemNameToEntryHead("Outermost_loop");
     djilog_logger.AddItemNameToEntryHead("x_des");
     djilog_logger.AddItemNameToEntryHead("y_des");
@@ -399,7 +399,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     djilog_logger.AddItemNameToEntryHead("q2_act");
     djilog_logger.AddItemNameToEntryHead("q3_act");
     djilog_logger.PassEntryHeaderToLogger();
-     */
+     
     auto tTrajOrig   = Clock::now();                                // Initialization Time
 
 
