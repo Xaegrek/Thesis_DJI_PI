@@ -156,7 +156,9 @@ main(int argc, char **argv) {
         case 'f':
             ctrlStyleThrust = false;
             monitoredTakeoff(vehicle);
+            sleep(1);
             moveByPositionOffset(vehicle, 0, 0, 5, 0);
+            sleep(1);
             trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, nDim, ctrlStyleThrust);
             monitoredLanding(vehicle);
             break;
