@@ -399,8 +399,8 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     djilog_logger.AddItemNameToEntryHead("q2_act");
     djilog_logger.AddItemNameToEntryHead("q3_act");
     djilog_logger.PassEntryHeaderToLogger();
-     
-    auto tTrajOrig   = Clock::now();                                // Initialization Time
+
+//    auto tTrajOrig   = Clock::now();                                // Initialization Time
 
 
     //@todo: remove this once the getErrorCode function signature changes
@@ -551,8 +551,9 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
-        std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
-        auto tTrajN = tTrajTempCounter.count();
+        //std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
+        //auto tTrajN = tTrajTempCounter.count();
+        auto tTrajN = elapsedTimeInMs;
         djilog_logger.AddItemDataToEntry("Outermost_loop",0);
         djilog_logger.AddItemDataToEntry("x_des",xOffsetDesired);
         djilog_logger.AddItemDataToEntry("y_des",yOffsetDesired);
