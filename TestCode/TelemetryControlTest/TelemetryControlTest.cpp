@@ -90,11 +90,10 @@ bool
 trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double bMan[], double cMan[], double tTrajEnd, int nDim, bool fStyle, int timeout) {
 
     //GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData("Data log for controller call");
-   // GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('x_des','y_des','z_des','yaw_des',
-   //                                                                                 'x_act','y_act','z_act','yaw_act',
-   //                                                                                 'time','q0_act','q1_act','q2_act','q3_act');
+    // GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData('x_des','y_des','z_des','yaw_des',
+    //                                                                                 'x_act','y_act','z_act','yaw_act',
+    //                                                                                 'time','q0_act','q1_act','q2_act','q3_act');
     CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
-    djilog_logger.AddItemNameToEntryHead("Outermost_loop");
     djilog_logger.AddItemNameToEntryHead("x_des");
     djilog_logger.AddItemNameToEntryHead("y_des");
     djilog_logger.AddItemNameToEntryHead("z_des");
@@ -212,8 +211,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             //GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData(xTr,yTr,zTr,psiTr,
             //                            logLocalOffset.x,logLocalOffset.y,logLocalOffset.z,
             //                            tTrajN,logQ.q0,logQ.q1,logQ.q2,logQ.q3);
-
-            djilog_logger.AddItemDataToEntry("Outermost_loop",1);
+            std::cout<<logLocalOffset.x<<" x test that goes in log"<<std::endl;
             djilog_logger.AddItemDataToEntry("x_des",xTr);
             djilog_logger.AddItemDataToEntry("y_des",yTr);
             djilog_logger.AddItemDataToEntry("z_des",zTr);
@@ -228,7 +226,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             djilog_logger.AddItemDataToEntry("q2_act",logQ.q2);
             djilog_logger.AddItemDataToEntry("q3_act",logQ.q3);
             djilog_logger.PassEntryDataToLogger();
-
+            ;
             // flight request
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
@@ -382,29 +380,6 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     int withinControlBoundsTimeReqmt = 50 * cycleTimeInMs; // 50 cycles
     int pkgIndex;
 
-/*
-    CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
-
-    djilog_logger.AddItemNameToEntryHead("Outermost_loop");
-    djilog_logger.AddItemNameToEntryHead("x_des");
-    djilog_logger.AddItemNameToEntryHead("y_des");
-    djilog_logger.AddItemNameToEntryHead("z_des");
-    djilog_logger.AddItemNameToEntryHead("yaw_des");
-    djilog_logger.AddItemNameToEntryHead("x_act");
-    djilog_logger.AddItemNameToEntryHead("y_act");
-    djilog_logger.AddItemNameToEntryHead("z_act");
-    djilog_logger.AddItemNameToEntryHead("yaw_act");
-    djilog_logger.AddItemNameToEntryHead("time");
-    djilog_logger.AddItemNameToEntryHead("q0_act");
-    djilog_logger.AddItemNameToEntryHead("q1_act");
-    djilog_logger.AddItemNameToEntryHead("q2_act");
-    djilog_logger.AddItemNameToEntryHead("q3_act");
-    djilog_logger.PassEntryHeaderToLogger();
-
-//    auto tTrajOrig   = Clock::now();                                // Initialization Time
-*/
-
-
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
 
@@ -553,25 +528,9 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec)
     {
-/*        //std::chrono::duration<double> tTrajTempCounter = Clock::now() - tTrajOrig;    // Time since begining
-        //auto tTrajN = tTrajTempCounter.count();
-        auto tTrajN = elapsedTimeInMs;
-        djilog_logger.AddItemDataToEntry("Outermost_loop",0);
-        djilog_logger.AddItemDataToEntry("x_des",xOffsetDesired);
-        djilog_logger.AddItemDataToEntry("y_des",yOffsetDesired);
-        djilog_logger.AddItemDataToEntry("z_des",zOffsetDesired);
-        djilog_logger.AddItemDataToEntry("yaw_des",yawDesiredRad);
-        djilog_logger.AddItemDataToEntry("x_act",localOffset.x);
-        djilog_logger.AddItemDataToEntry("y_act",localOffset.y);
-        djilog_logger.AddItemDataToEntry("z_act",localOffset.z);
-        djilog_logger.AddItemDataToEntry("yaw_act",yawInRad);
-        djilog_logger.AddItemDataToEntry("time",tTrajN);
-        djilog_logger.AddItemDataToEntry("q0_act",broadcastQ.q0);
-        djilog_logger.AddItemDataToEntry("q1_act",broadcastQ.q1);
-        djilog_logger.AddItemDataToEntry("q2_act",broadcastQ.q2);
-        djilog_logger.AddItemDataToEntry("q3_act",broadcastQ.q3);
-        djilog_logger.PassEntryDataToLogger();*/
 
+        vehicle->control->positionAndYawCtrl(xCmd, yCmd, zCmd,
+                                             yawDesiredRad / DEG2RAD);
 
         usleep(cycleTimeInMs * 1000);
         elapsedTimeInMs += cycleTimeInMs;
@@ -695,7 +654,7 @@ bool
 moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
                       float yVelocityDesired, float zVelocityDesired,
                       float yawRateDesired, float posThresholdInM,
-                     float yawThresholdInDeg) {
+                      float yawThresholdInDeg) {
     // Set timeout: this timeout is the time you allow the drone to take to finish
     // the
     // mission
@@ -731,20 +690,15 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
 
 /*    //! Main closed-loop receding setpoint position control
     while (elapsedTimeInMs < timeoutInMilSec) {
-
         vehicle->control->velocityAndYawRateCtrl(xCmd, yCmd, zCmd,
                                              yawRateDesired);
-
         usleep(cycleTimeInMs * 1000);
         elapsedTimeInMs += cycleTimeInMs;
-
         //! File Writing
-
         outfile << "Command Request Velocity and Yaw Rate = " << xCmd
                 << ", " << yCmd << ", " << zCmd << ", "
                 << yawRateDesired
                 << "\n" << std::endl;
-
         //! 3. Reset withinBoundsCounter if necessary
         if (outOfBounds > outOfControlBoundsTimeLimit) {
             withinBoundsCounter = 0;
@@ -755,7 +709,6 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
             break;
         }
     }
-
     //! Set velocity to zero, to prevent any residual velocity from position
     //! command
     if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
@@ -765,7 +718,6 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
             brakeCounter += cycleTimeInMs;
         }
     }
-
     if (elapsedTimeInMs >= timeoutInMilSec) {
         std::cout << "Task timeout!\n";
         if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
@@ -778,7 +730,6 @@ moveByVelocityRequest(Vehicle *vehicle, float xVelocityDesired,
         }
         return ACK::FAIL;
     }
-
     if (!vehicle->isM100() && !vehicle->isLegacyM600()) {
         ACK::ErrorCode ack =
                 vehicle->subscribe->removePackage(pkgIndex, responseTimeout);
