@@ -110,6 +110,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
     djilog_logger.PassEntryHeaderToLogger();
 
     Telemetry::GlobalPosition logCurrentGPS;
+    Telemetry::GlobalPosition logCurrentGPSsec;
     Telemetry::Vector3f logLocalOffset;
     Telemetry::Quaternion logQ;
 
@@ -200,14 +201,16 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
             // logging
             logCurrentGPS = vehicle->broadcast->getGlobalPosition();
+            logCurrentGPSsec = logCurrentGPS;
             localOffsetFromGpsOffset(vehicle, logLocalOffset,
                                      static_cast<void*>(&logCurrentGPS),
-                                     static_cast<void*>(&logCurrentGPS));
+                                     static_cast<void*>(&logCurrentGPSsec));
             logQ = vehicle->broadcast->getQuaternion();
 
             //GlobalCsvLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog").LogData(xTr,yTr,zTr,psiTr,
             //                            logLocalOffset.x,logLocalOffset.y,logLocalOffset.z,
             //                            tTrajN,logQ.q0,logQ.q1,logQ.q2,logQ.q3);
+            std::cout<<logLocalOffset.x<<" x test that goes in log"<<std::endl;
             djilog_logger.AddItemDataToEntry("x_des",xTr);
             djilog_logger.AddItemDataToEntry("y_des",yTr);
             djilog_logger.AddItemDataToEntry("z_des",zTr);
@@ -222,7 +225,7 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             djilog_logger.AddItemDataToEntry("q2_act",logQ.q2);
             djilog_logger.AddItemDataToEntry("q3_act",logQ.q3);
             djilog_logger.PassEntryDataToLogger();
-            
+;
             // flight request
             moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
