@@ -81,7 +81,7 @@ main(int argc, char **argv) {
     double aMan[] = {0, 3.9691e-1,0};
     double bMan[] = {5.1440, -2.0635e-1,0};
     double cMan[] = {-1.6764e0, -2.1535e-1,0};
-    double timeTrajEnd = 90;
+    double timeTrajEnd = 30;
     int     nDim = sizeof(aMan)/ sizeof(aMan[0]);
 
     //! Test Waypoint flight points - expandable for nx4
@@ -156,7 +156,7 @@ main(int argc, char **argv) {
         case 'f':
             ctrlStyleThrust = false;
             monitoredTakeoff(vehicle);
-            //moveByPositionOffset(vehicle, 0, 0, 5, 0);
+            //  moveByPositionOffset(vehicle, 0, 0, 5, 0);
             trajectoryControllerTestCrude(vehicle,aMan,bMan,cMan, timeTrajEnd, nDim, ctrlStyleThrust);
             monitoredLanding(vehicle);
             break;
