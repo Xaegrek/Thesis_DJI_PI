@@ -186,12 +186,6 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
 
         double phiTr = atan2(cos(gamTr) * psidTr, (gamdTr + cos(gamTr) * UAV.gravity / VaTr)); //pitch
 
-        std::ofstream outfile;
-        outfile.open("QuaterionRecent.txt", std::ofstream::app);
-        outfile << "\n Position Trajectory Request"  << std::endl;
-        outfile << "time: " << tTrajN<<" nDim: "<<nDim<<std::endl;
-        outfile << "coordinates " << xTr<<" , "<< yTr <<" , "<< zTr << std::endl;
-        outfile.close();
 
         std::cout << "time: " << tTrajN<<std::endl;
         std::cout << "Position: " << xTr<< " , "<< yTr << " ,  "<<zTr<<std::endl;
@@ -399,6 +393,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     djilog_logger.AddItemNameToEntryHead("q1_act");
     djilog_logger.AddItemNameToEntryHead("q2_act");
     djilog_logger.AddItemNameToEntryHead("q3_act");
+    djilog_logger.AddItemNameToEntryHead("zCmd");
     djilog_logger.PassEntryHeaderToLogger();
 
 //    auto tTrajOrig   = Clock::now();                                // Initialization Time
@@ -570,8 +565,10 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         djilog_logger.AddItemDataToEntry("q1_act",broadcastQ.q1);
         djilog_logger.AddItemDataToEntry("q2_act",broadcastQ.q2);
         djilog_logger.AddItemDataToEntry("q3_act",broadcastQ.q3);
+        djilog_logger.AddItemDataToEntry("zCmd",zCmd);
         djilog_logger.PassEntryDataToLogger();
 
+        std::cout<<'zcmd that might be wierd '<< zCmd<<std::endl;
         vehicle->control->positionAndYawCtrl(xCmd, yCmd, zCmd,
                                              yawDesiredRad / DEG2RAD);
 
@@ -916,6 +913,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     double xDesiredRad = DEG2RAD * xRoll;
     double yDesiredRad = DEG2RAD * yPitch;
     //! Get Euler angle
+In the terminal, type sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf and press Enter. This will open the 90-mouse.conf file in gedit (the text editor) in super user mode.
     // Quaternion retrieved via subscription
     Telemetry::TypeMap<TOPIC_QUATERNION>::type subscriptionQ;
     // Quaternion retrieved via broadcast
