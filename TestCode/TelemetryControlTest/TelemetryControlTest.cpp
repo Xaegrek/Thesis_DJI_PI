@@ -568,7 +568,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         djilog_logger.AddItemDataToEntry("zCmd",zCmd);
         djilog_logger.PassEntryDataToLogger();
 
-        std::cout<<'zcmd that might be wierd '<< zCmd<<std::endl;
+        std::cout<<"zcmd "<< zCmd<<std::endl;
         vehicle->control->positionAndYawCtrl(xCmd, yCmd, zCmd,
                                              yawDesiredRad / DEG2RAD);
 
