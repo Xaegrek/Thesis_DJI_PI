@@ -217,41 +217,43 @@ main(int argc, char **argv) {
             vehicle->control->positionAndYawCtrl(15,15,25,0);
             break;
         case 'I':
-            std::cout<<"testing 5 5 10 with loop"<<std::endl;
-            CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
-            djilog_logger.AddItemNameToEntryHead("Outermost_loop");
-            djilog_logger.AddItemNameToEntryHead("x_des");
-            djilog_logger.AddItemNameToEntryHead("y_des");
-            djilog_logger.AddItemNameToEntryHead("z_des");
-            djilog_logger.AddItemNameToEntryHead("yaw_des");
-            djilog_logger.AddItemNameToEntryHead("x_act");
-            djilog_logger.AddItemNameToEntryHead("y_act");
-            djilog_logger.AddItemNameToEntryHead("z_act");
-            djilog_logger.AddItemNameToEntryHead("yaw_act");
-            djilog_logger.PassEntryHeaderToLogger();
-            Telemetry::GlobalPosition logCurrentGPS;
-            Telemetry::GlobalPosition logOriginGPS;
-            Telemetry::Vector3f logLocalOffset;
-            logCurrentGPS = vehicle->broadcast->getGlobalPosition();
-            logOriginGPS = logCurrentGPS;
-
-            for (nn = 0; nn<15; nn=nn+1){
-                vehicle->control->positionAndYawCtrl(1,1,2,30);
-                std::cout<<nn<<" loops"<<std::endl;
+            {
+                std::cout<<"testing 5 5 10 with loop"<<std::endl;
+                CtrlLogger &djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
+                djilog_logger.AddItemNameToEntryHead("Outermost_loop");
+                djilog_logger.AddItemNameToEntryHead("x_des");
+                djilog_logger.AddItemNameToEntryHead("y_des");
+                djilog_logger.AddItemNameToEntryHead("z_des");
+                djilog_logger.AddItemNameToEntryHead("yaw_des");
+                djilog_logger.AddItemNameToEntryHead("x_act");
+                djilog_logger.AddItemNameToEntryHead("y_act");
+                djilog_logger.AddItemNameToEntryHead("z_act");
+                djilog_logger.AddItemNameToEntryHead("yaw_act");
+                djilog_logger.PassEntryHeaderToLogger();
+                Telemetry::GlobalPosition logCurrentGPS;
+                Telemetry::GlobalPosition logOriginGPS;
+                Telemetry::Vector3f logLocalOffset;
                 logCurrentGPS = vehicle->broadcast->getGlobalPosition();
-                localOffsetFromGpsOffset(vehicle, logLocalOffset,
-                                         static_cast<void*>(&logCurrentGPS),
-                                         static_cast<void*>(&logOriginGPS));
-                djilog_logger.AddItemDataToEntry("Outermost_loop",1);
-                djilog_logger.AddItemDataToEntry("x_des",1);
-                djilog_logger.AddItemDataToEntry("y_des",1);
-                djilog_logger.AddItemDataToEntry("z_des",2);
-                djilog_logger.AddItemDataToEntry("yaw_des",30);
-                djilog_logger.AddItemDataToEntry("x_act",logLocalOffset.x);
-                djilog_logger.AddItemDataToEntry("y_act",logLocalOffset.y);
-                djilog_logger.AddItemDataToEntry("z_act",logLocalOffset.z);
-                djilog_logger.AddItemDataToEntry("yaw_act",0);
-                djilog_logger.PassEntryDataToLogger();
+                logOriginGPS = logCurrentGPS;
+
+                for (nn = 0; nn < 15; nn = nn + 1) {
+                    vehicle->control->positionAndYawCtrl(1, 1, 2, 30);
+                    std::cout << nn << " loops" << std::endl;
+                    logCurrentGPS = vehicle->broadcast->getGlobalPosition();
+                    localOffsetFromGpsOffset(vehicle, logLocalOffset,
+                                             static_cast<void *>(&logCurrentGPS),
+                                             static_cast<void *>(&logOriginGPS));
+                    djilog_logger.AddItemDataToEntry("Outermost_loop", 1);
+                    djilog_logger.AddItemDataToEntry("x_des", 1);
+                    djilog_logger.AddItemDataToEntry("y_des", 1);
+                    djilog_logger.AddItemDataToEntry("z_des", 2);
+                    djilog_logger.AddItemDataToEntry("yaw_des", 30);
+                    djilog_logger.AddItemDataToEntry("x_act", logLocalOffset.x);
+                    djilog_logger.AddItemDataToEntry("y_act", logLocalOffset.y);
+                    djilog_logger.AddItemDataToEntry("z_act", logLocalOffset.z);
+                    djilog_logger.AddItemDataToEntry("yaw_act", 0);
+                    djilog_logger.PassEntryDataToLogger();
+                }
             }
             break;
         default:
