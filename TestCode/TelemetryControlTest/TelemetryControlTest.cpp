@@ -568,7 +568,7 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         djilog_logger.AddItemDataToEntry("zCmd",zCmd);
         djilog_logger.PassEntryDataToLogger();
 
-        std::cout<<'zcmd that might be wierd '<< zCmd<<std::endl;
+        std::cout<<"zcmd "<< zCmd<<std::endl;
         vehicle->control->positionAndYawCtrl(xCmd, yCmd, zCmd,
                                              yawDesiredRad / DEG2RAD);
 
@@ -913,7 +913,7 @@ moveByAttitudeThrust(Vehicle *vehicle, float xRoll,
     double xDesiredRad = DEG2RAD * xRoll;
     double yDesiredRad = DEG2RAD * yPitch;
     //! Get Euler angle
-In the terminal, type sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf and press Enter. This will open the 90-mouse.conf file in gedit (the text editor) in super user mode.
+//! fix this it broke in git historeyIn the terminal, type sudo gedit /usr/share/X11/xorg.conf.d/90-mouse.conf and press Enter. This will open the 90-mouse.conf file in gedit (the text editor) in super user mode.
     // Quaternion retrieved via subscription
     Telemetry::TypeMap<TOPIC_QUATERNION>::type subscriptionQ;
     // Quaternion retrieved via broadcast
