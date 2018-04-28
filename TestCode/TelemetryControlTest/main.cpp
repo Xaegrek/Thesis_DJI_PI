@@ -213,11 +213,11 @@ main(int argc, char **argv) {
             trajectoryWaypointControllerTest(vehicle, waypoints);
             break;
         case 'i':
-            std::cout<<'testing to 15 15 25'<<std::endl;
+            std::cout<<"testing to 15 15 25"<<std::endl;
             vehicle->control->positionAndYawCtrl(15,15,25,0);
             break;
         case 'I':
-            std::cout<<'testing 5 5 10 with loop'<<std::endl;
+            std::cout<<"testing 5 5 10 with loop"<<std::endl;
             CtrlLogger& djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
             djilog_logger.AddItemNameToEntryHead("Outermost_loop");
             djilog_logger.AddItemNameToEntryHead("x_des");
