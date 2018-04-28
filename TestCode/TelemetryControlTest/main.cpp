@@ -86,7 +86,7 @@ main(int argc, char **argv) {
     //! Test polynomial values - DO NOT RUN WITH THESE< CAUSE NOT GOOD - FIXED WING
     bool ctrlStyleThrust;
     double aMan[] = {0, 3.9691e-1,0};
-    double bMan[] = {5.1440, -2.0635e-2,0};
+    double bMan[] = {0, -2.0635e-2,0};
     double cMan[] = {-1.6764e0, -2.1535e-1,0};
     double timeTrajEnd = 30;
     int     nDim = sizeof(aMan)/ sizeof(aMan[0]);
