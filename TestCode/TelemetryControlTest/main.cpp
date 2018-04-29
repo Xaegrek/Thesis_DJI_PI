@@ -215,12 +215,14 @@ main(int argc, char **argv) {
         case 'i':
             std::cout<<"testing to 15 15 25"<<std::endl;
             monitoredTakeoff(vehicle);
+            sleep(3);
             vehicle->control->positionAndYawCtrl(15,15,25,0);
             sleep(30);
             monitoredLanding(vehicle);
             break;
         case 'I':
             monitoredTakeoff(vehicle);
+            sleep(3);
             {
                 std::cout<<"testing 5 5 10 with loop"<<std::endl;
                 CtrlLogger &djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
