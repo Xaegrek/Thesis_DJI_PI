@@ -393,6 +393,8 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
     djilog_logger.AddItemNameToEntryHead("q1_act");
     djilog_logger.AddItemNameToEntryHead("q2_act");
     djilog_logger.AddItemNameToEntryHead("q3_act");
+    djilog_logger.AddItemNameToEntryHead("xCmd");
+    djilog_logger.AddItemNameToEntryHead("yCmd");
     djilog_logger.AddItemNameToEntryHead("zCmd");
     djilog_logger.PassEntryHeaderToLogger();
 
@@ -565,6 +567,8 @@ moveByPositionOffset(Vehicle *vehicle, float xOffsetDesired,
         djilog_logger.AddItemDataToEntry("q1_act",broadcastQ.q1);
         djilog_logger.AddItemDataToEntry("q2_act",broadcastQ.q2);
         djilog_logger.AddItemDataToEntry("q3_act",broadcastQ.q3);
+        djilog_logger.AddItemDataToEntry("xCmd",xCmd);
+        djilog_logger.AddItemDataToEntry("yCmd",yCmd);
         djilog_logger.AddItemDataToEntry("zCmd",zCmd);
         djilog_logger.PassEntryDataToLogger();
 

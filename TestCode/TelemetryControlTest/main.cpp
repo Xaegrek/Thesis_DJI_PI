@@ -243,7 +243,7 @@ main(int argc, char **argv) {
                 logOriginGPS = logCurrentGPS;
 
                 for (nn = 0; nn < 15; nn = nn + 1) {
-                    vehicle->control->positionAndYawCtrl(1, 1, -2, 30);
+                    vehicle->control->positionAndYawCtrl(1, 1, 2, 30);
                     std::cout << nn << " loops" << std::endl;
                     logCurrentGPS = vehicle->broadcast->getGlobalPosition();
                     localOffsetFromGpsOffset(vehicle, logLocalOffset,
