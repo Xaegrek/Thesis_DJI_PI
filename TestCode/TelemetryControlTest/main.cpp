@@ -214,9 +214,13 @@ main(int argc, char **argv) {
             break;
         case 'i':
             std::cout<<"testing to 15 15 25"<<std::endl;
+            monitoredTakeoff(vehicle);
             vehicle->control->positionAndYawCtrl(15,15,25,0);
+            sleep(30);
+            monitoredLanding(vehicle);
             break;
         case 'I':
+            monitoredTakeoff(vehicle);
             {
                 std::cout<<"testing 5 5 10 with loop"<<std::endl;
                 CtrlLogger &djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
@@ -253,8 +257,10 @@ main(int argc, char **argv) {
                     djilog_logger.AddItemDataToEntry("z_act", logLocalOffset.z);
                     djilog_logger.AddItemDataToEntry("yaw_act", 0);
                     djilog_logger.PassEntryDataToLogger();
+                    sleep(15);
                 }
             }
+            monitoredLanding(vehicle);
             break;
         default:
             break;
