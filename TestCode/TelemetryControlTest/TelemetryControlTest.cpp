@@ -288,7 +288,17 @@ monitoredTakeoff(Vehicle *vehicle, int timeout) {
     //@todo: remove this once the getErrorCode function signature changes
     char func[50];
     int pkgIndex;
-
+    CtrlLogger &djilog_logger = CtrlLogger::GetLogger("global_csv_djilog", "/home/xaegrek/djilog");
+    djilog_logger.AddItemNameToEntryHead("Outermost_loop");
+    djilog_logger.AddItemNameToEntryHead("x_des");
+    djilog_logger.AddItemNameToEntryHead("y_des");
+    djilog_logger.AddItemNameToEntryHead("z_des");
+    djilog_logger.AddItemNameToEntryHead("yaw_des");
+    djilog_logger.AddItemNameToEntryHead("x_act");
+    djilog_logger.AddItemNameToEntryHead("y_act");
+    djilog_logger.AddItemNameToEntryHead("z_act");
+    djilog_logger.AddItemNameToEntryHead("yaw_act");
+    djilog_logger.PassEntryHeaderToLogger();
     /*! Verify Telemetry Subscription */
 
     // Start takeoff
@@ -347,7 +357,16 @@ monitoredTakeoff(Vehicle *vehicle, int timeout) {
     } while (delta >= 0.009);
 
     std::cout << "Aircraft hovering at " << currentHeight.altitude << "m!\n";
-
+    djilog_logger.AddItemDataToEntry("Outermost_loop",0);
+    djilog_logger.AddItemDataToEntry("x_des",0);
+    djilog_logger.AddItemDataToEntry("y_des",0);
+    djilog_logger.AddItemDataToEntry("z_des",0);
+    djilog_logger.AddItemDataToEntry("yaw_des",0);
+    djilog_logger.AddItemDataToEntry("x_act",0);
+    djilog_logger.AddItemDataToEntry("y_act",0);
+    djilog_logger.AddItemDataToEntry("z_act",currentHeight.altitude;
+    djilog_logger.AddItemDataToEntry("yaw_act",0);
+    djilog_logger.PassEntryDataToLogger();
     return true;
 }
 
