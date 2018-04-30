@@ -364,7 +364,7 @@ monitoredTakeoff(Vehicle *vehicle, int timeout) {
     djilog_logger.AddItemDataToEntry("yaw_des",0);
     djilog_logger.AddItemDataToEntry("x_act",0);
     djilog_logger.AddItemDataToEntry("y_act",0);
-    djilog_logger.AddItemDataToEntry("z_act",currentHeight.altitude;
+    djilog_logger.AddItemDataToEntry("z_act",currentHeight.altitude);
     djilog_logger.AddItemDataToEntry("yaw_act",0);
     djilog_logger.PassEntryDataToLogger();
     return true;
