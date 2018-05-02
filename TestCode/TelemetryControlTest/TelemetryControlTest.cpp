@@ -224,12 +224,12 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             djilog_logger.PassEntryDataToLogger();
 
             // flight request
-            //moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
-            vehicle->control->positionAndYawCtrl(xTrTemp, yTrTemp, zTrTemp,
-                                                 psiTrTemp / DEG2RAD);
+            moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
+            //vehicle->control->positionAndYawCtrl(xTrTemp, yTrTemp, zTrTemp,
+            //                                     psiTrTemp / DEG2RAD);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
-            usleep(1e5);
+            //usleep(1e5);
         }
         else if (fStyle) {
             auto xdTrTemp =float (xdTr-xdTrOld); auto ydTrTemp =float (ydTr-ydTrOld); auto zdTrTemp =float (zdTr-zdTrOld);
