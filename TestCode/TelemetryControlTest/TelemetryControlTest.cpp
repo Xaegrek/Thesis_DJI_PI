@@ -224,7 +224,9 @@ trajectoryControllerTestCrude(DJI::OSDK::Vehicle *vehicle, double aMan[], double
             djilog_logger.PassEntryDataToLogger();
 
             // flight request
-            moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
+            //moveByPositionOffset(vehicle,xTrTemp,yTrTemp,zTrTemp,psiTrTemp);
+            vehicle->control->positionAndYawCtrl(xTrTemp, yTrTemp, zTrTemp,
+                                                 psiTrTemp / DEG2RAD);
             std::cout<<xTrTemp<< " , "<<yTrTemp<< " , "<<zTrTemp<< " , "<<psiTrTemp <<std::endl;
             xTrOld = xTr; yTrOld = yTr; zTrOld = zTr; psiTrOld = psiTr;
         }
